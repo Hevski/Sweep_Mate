@@ -4,9 +4,6 @@
   </new-player-form>
   <sweepstake-results v-else="generateResult"></sweepstake-results>
 
-
-
-
 </template>
 
 <script>
