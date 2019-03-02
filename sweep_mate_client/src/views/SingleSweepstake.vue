@@ -1,5 +1,9 @@
 <template lang="html">
-
+  <div class="">
+    <div class="">
+      <list-players :playersList="playersList" v-if="playersList">
+      </list-players>
+    </div>
   <!-- <sweepstake-details/> -->
   <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
   </new-player-form>
