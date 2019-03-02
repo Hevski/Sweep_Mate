@@ -4,16 +4,13 @@
   <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
   </new-player-form>
 	<p class="notification" v-else>This sweepstake is no longer available.</p>
-  <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
+  <!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
 
 </template>
 
 <script>
 import NewPlayerForm from '../components/NewPlayerForm.vue'
 export default {
-  // mounted() {
-  //   // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
-  // },
 	data(){
 		return {
 			sweep: ''
@@ -35,8 +32,7 @@ export default {
       //returns true if sweepstake cut off date is past
       return today >= cutOffDate;
     },
-
-    generateResult() {
+    showResult() {
       //return winners name and option
     }
   }

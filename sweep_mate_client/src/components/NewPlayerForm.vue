@@ -27,8 +27,9 @@ export default {
   methods: {
 		createPlayer(e){
 			e.preventDefault();
-			//generate choice
-			// const selectedChoice = this.generateChoice();
+			// allocate option randomly
+			const allocatedOption = this.allocateOption();
+			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: allocatedOption, won: false });
 
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
@@ -36,15 +37,33 @@ export default {
 				body: JSON.stringify(this.newPlayer),
 				headers: { 'Content-Type': 'application/json'}
 			})
-			.then(res => res.json())
-			.then(res => {
-				// this.newPlayer.games.push(selectedChoice)
-			})
+				.then(res => res.json())
+				.then(res => { this.makeOptionUnavailable(allocatedOption) })
 
 		},
-    generateChoice() {
+    allocateOption() {
+			// find all available options
+			const availableOptions = this.sweep.options.filter(option => option.allocated === false );
 
-    }
+			// allocate one of the available options randomly
+			const selectedIndex = Math.floor(Math.random() * Math.floor(availableOptions.length - 1));
+			const allocatedOption = availableOptions[selectedIndex];
+
+			return allocatedOption.name;
+    },
+		makeOptionUnavailable(optionName){
+
+			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
+			optionToRemove.allocated = true
+
+			//save changes to database
+			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
+				method: 'put',
+				body: JSON.stringify(this.sweep),
+				headers: { 'Content-Type': 'application/json'}
+			})
+
+		}
   }
 }
 </script>
