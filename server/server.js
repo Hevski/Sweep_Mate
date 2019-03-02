@@ -11,7 +11,7 @@ const createRouter = require('./helpers/create_router.js');
 
 app.use(bodyParser.json());
 
-MongoClient.connect('mongodb://localhost:27017')
+MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true })
   .then((client) => {
     const db = client.db('sweep_mate_db');
     const sweepstakesCollection = db.collection('sweepstakes');
