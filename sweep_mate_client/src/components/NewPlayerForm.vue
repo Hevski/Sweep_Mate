@@ -26,14 +26,15 @@ export default {
 		}
 	},
   methods: {
-		createPlayer(){
+		createPlayer(e){
+			e.preventDefault();
 			//generate choice
 			// const selectedChoice = this.generateChoice();
 
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
 				method: 'post',
-				body: JSON.stringify(newPlayer),
+				body: JSON.stringify(this.newPlayer),
 				headers: { 'Content-Type': 'application/json'}
 			})
 			.then(res => res.json())
