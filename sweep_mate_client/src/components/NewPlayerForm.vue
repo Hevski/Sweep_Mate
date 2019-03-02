@@ -38,7 +38,6 @@ export default {
 			})
 			.then(res => res.json())
 			.then(res => {
-				this.newPlayer = res
 				// this.newPlayer.games.push(selectedChoice)
 			})
 

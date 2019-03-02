@@ -1,14 +1,11 @@
 <template lang="html">
-  <div class="">
-    <div class="">
-      <list-players :playersList="playersList" v-if="playersList">
-      </list-players>
-    </div>
-    <!-- <sweepstake-details/> -->
-    <new-player-form :sweep="sweep">
-    </new-player-form>
-    <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
-  </div>
+
+  <!-- <sweepstake-details/> -->
+  <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
+  </new-player-form>
+	<p class="notification" v-else>This sweepstake is no longer available.</p>
+  <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
+
 </template>
 
 <script>
@@ -40,8 +37,10 @@ export default {
 	},
   methods: {
     sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = new Date(this.sweep.cutOffDate);
       //returns true if sweepstake cut off date is past
-      return false;
+      return today >= cutOffDate;
     },
 
     generateResult() {
@@ -52,4 +51,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	.notification {
+		color: #F00;
+	}
 </style>
