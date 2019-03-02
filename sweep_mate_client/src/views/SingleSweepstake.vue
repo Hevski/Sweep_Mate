@@ -1,15 +1,16 @@
 <template lang="html">
   <h1>Playing</h1>
-  <!-- <sweepstake-details/>
+  <sweepstake-details/>
   <new-player-form v-if="!sweepstakeClosed">
-  </new-player-form> -->
-  <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
+  </new-player-form>
+  <sweepstake-results v-else-if="generateResult"></sweepstake-results>
 </template>
 
 <script>
 export default {
   mounted() {
-    // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
+    fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
+    .then(res => res.json)
   },
   methods: {
     sweepstakeClosed() {
