@@ -4,7 +4,7 @@
       <h1>SweepMate</h1>
       <img src="../assets/penguin_logo.jpeg" alt="penguin_logo">
     </section>
-    <section v-if="sweeps">
+    <section id="sweeps-container" v-if="sweeps">
       <h2>Current Games</h2>
       <sweep-summary-home v-for="(sweep, index) in sweeps" :key="index" :sweep="sweep"></sweep-summary-home>
     </section>
@@ -30,3 +30,14 @@ export default {
   }
 }
 </script>
+
+<style lang="css" scoped>
+
+  #sweeps-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

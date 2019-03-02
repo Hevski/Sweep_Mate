@@ -1,29 +1,48 @@
 <template lang="html">
   <div class="sweep-summary" :style="style">
     <h3>{{sweep.title}}</h3>
-    <button v-on:click="goToSingleSweepPage" type="button" name="button">Play</button>
+    <router-link :to="{name: 'single-sweepstake', params: {id: this.sweep._id}}" class="button">PLAY</router-link>
   </div>
 </template>
 
 <script>
+// import SingleSweepstake from '../views/SingleSweepstake.vue';
 export default {
   name: "SweepSummaryHome",
   props: ['sweep'],
+  components: {
+    // SingleSweepstake
+  },
   methods: {
-    goToSingleSweepPage(){
-
-    }
   },
   computed: {
     style () {
       return 'background-image: url(' + this.sweep.picture + ');'
-        }
+    }
   }
 }
 </script>
 
 <style lang="css" scoped>
-.sweep-summary {
 
+.sweep-summary {
+  display: flex;
+  height: 200px;
+  background-size: cover;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button {
+  max-width: 50px;
+}
+
+h3 {
+  color: white;
+  background-color: rgba(74,70,70,0.5);
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>

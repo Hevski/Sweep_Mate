@@ -15,6 +15,26 @@ db.sweepstakes.insertMany([
       {name: "Italy", allocated: false}
     ],
     finalAnswer: ""
+  },
+  {
+    title: "Great British Bake Off",
+    picture: "https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2018/09/BAKERS3-1024x450.png",
+    cutOffDate: "08-07-2019",
+    options: [
+      {name: "Antony", allocated: false},
+      {name: "Briony", allocated: false},
+      {name: "Dan", allocated: false},
+      {name: "Imelda", allocated: false},
+      {name: "Jon", allocated: false},
+      {name: "Karen", allocated: false},
+      {name: "Kim-joy", allocated: false},
+      {name: "Luke", allocated: false},
+      {name: "Manon", allocated: false},
+      {name: "Rahul", allocated: false},
+      {name: "Ruby", allocated: false},
+      {name: "Terry", allocated: false}
+    ],
+    finalAnswer: ""
   }
 ])
 
