@@ -1,11 +1,9 @@
 <template lang="html">
+
   <!-- <sweepstake-details/> -->
   <new-player-form v-if="!sweepstakeClosed">
   </new-player-form>
   <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
-
-
-
 
 </template>
 

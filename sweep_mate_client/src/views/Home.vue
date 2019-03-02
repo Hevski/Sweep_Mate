@@ -1,17 +1,43 @@
 <template>
   <div class="home">
-		<h1>Hello there</h1>
+    <section class="logo">
+      <h1>SweepMate</h1>
+      <img src="../assets/penguin_logo.jpeg" alt="penguin_logo">
+    </section>
+    <section id="sweeps-container" v-if="sweeps">
+      <h2>Current Games</h2>
+      <sweep-summary-home v-for="(sweep, index) in sweeps" :key="index" :sweep="sweep"></sweep-summary-home>
+    </section>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
-
+import SweepSummaryHome from '../components/SweepSummaryHome.vue';
 export default {
   name: 'home',
   components: {
-
+    SweepSummaryHome
+  },
+  data() {
+    return {
+      sweeps: []
+    }
+  },
+  mounted(){
+    fetch("http://localhost:3000/api/sweepstakes/")
+    .then(res => res.json())
+    .then(data => this.sweeps = data)
   }
 }
 </script>
+
+<style lang="css" scoped>
+
+  #sweeps-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
