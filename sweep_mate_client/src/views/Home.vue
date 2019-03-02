@@ -8,7 +8,7 @@
 			<h2>Current Games</h2>
 			<sweep-summary-home v-for="(sweep, index) in sweeps" :key="index" :sweep="sweep"></sweep-summary-home>
 		</section>
-		<new-player-form></new-player-form>
+		<!-- <new-player-form></new-player-form> -->
 	</div>
 </template>
 
