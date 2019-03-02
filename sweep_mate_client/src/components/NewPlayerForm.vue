@@ -25,7 +25,8 @@ export default {
 		}
 	},
   methods: {
-		createPlayer(){
+		createPlayer(e){
+			e.preventDefault();
 			//generate choice
 			// const selectedChoice = this.generateChoice();
 
