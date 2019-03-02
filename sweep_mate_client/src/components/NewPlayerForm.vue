@@ -8,14 +8,13 @@
 		</label>
 
 		<button type="submit" name="button">PLAY</button>
-
-  <!-- submit button v:on-click="generateChoice"-->
   </form>
 </template>
 
 <script>
 export default {
 	name: "new-player-form",
+	props: ["sweep"],
 	data(){
 		return {
 			newPlayer: {
@@ -33,7 +32,7 @@ export default {
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
 				method: 'post',
-				body: JSON.stringify(newPlayer),
+				body: JSON.stringify(this.newPlayer),
 				headers: { 'Content-Type': 'application/json'}
 			})
 			.then(res => res.json())
