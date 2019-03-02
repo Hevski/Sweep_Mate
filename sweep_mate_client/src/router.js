@@ -10,27 +10,27 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/sweepstakes/:id',
-      name: 'single-sweepstake',
-      component: SingleSweepstake
-    },
-    {
-      path: '/admin',
-      name: 'admin-home',
-      component: AdminHome
-    },
-    {
-      path: '/admin/sweepstakes/new',
-      name: 'admin-sweepstakes-new',
-      component: AdminNewSweepstake
-    },
-    {
-      path: '/admin/sweepstakes/:id/edit',
-      name: 'admin-sweepstakes-edit',
-      component: AdminEditSweepstake
-    },
+    }
+    // {
+    //   path: '/sweepstakes/:id',
+    //   name: 'single-sweepstake',
+    //   component: SingleSweepstake
+    // },
+    // {
+    //   path: '/admin',
+    //   name: 'admin-home',
+    //   component: AdminHome
+    // },
+    // {
+    //   path: '/admin/sweepstakes/new',
+    //   name: 'admin-sweepstakes-new',
+    //   component: AdminNewSweepstake
+    // },
+    // {
+    //   path: '/admin/sweepstakes/:id/edit',
+    //   name: 'admin-sweepstakes-edit',
+    //   component: AdminEditSweepstake
+    // }
 
   ]
 })
