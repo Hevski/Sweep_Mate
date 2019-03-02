@@ -9,7 +9,9 @@
 </template>
 
 <script>
-import NewPlayerForm from '../components/NewPlayerForm.vue'
+import { eventBus } from '../main.js';
+import NewPlayerForm from '../components/NewPlayerForm.vue';
+
 export default {
 	data(){
 		return {
@@ -21,6 +23,8 @@ export default {
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
 			.then(res => res.json())
 			.then(res => this.sweep = res)
+
+			eventBus.$on('option-allocated', optionToRemove => this.makeOptionUnavailable(optionToRemove));
 	},
 	components: {
 		NewPlayerForm
@@ -32,6 +36,17 @@ export default {
       //returns true if sweepstake cut off date is past
       return today >= cutOffDate;
     },
+		makeOptionUnavailable(optionName){
+			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
+			optionToRemove.allocated = true
+
+			//save changes to database
+			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
+				method: 'put',
+				body: JSON.stringify(this.sweep),
+				headers: { 'Content-Type': 'application/json'}
+			})
+		},
     showResult() {
       //return winners name and option
     }

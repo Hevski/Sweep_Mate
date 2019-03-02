@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
 export default {
 	name: "new-player-form",
 	props: ["sweep"],
@@ -28,8 +29,8 @@ export default {
 		createPlayer(e){
 			e.preventDefault();
 			// allocate option randomly
-			const allocatedOption = this.allocateOption();
-			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: allocatedOption, won: false });
+			const pickedOption = this.pickOption();
+			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption, won: false });
 
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
@@ -38,10 +39,14 @@ export default {
 				headers: { 'Content-Type': 'application/json'}
 			})
 				.then(res => res.json())
-				.then(res => { this.makeOptionUnavailable(allocatedOption) })
+				.then(player => {
+					eventBus.$emit('option-allocated', player.games[player.games.length-1].allocatedOption)
 
+					//form reset
+					this.newPlayer.name = this.newPlayer.email = ""
+				})
 		},
-    allocateOption() {
+    pickOption() {
 			// find all available options
 			const availableOptions = this.sweep.options.filter(option => option.allocated === false );
 
@@ -50,23 +55,22 @@ export default {
 			const allocatedOption = availableOptions[selectedIndex];
 
 			return allocatedOption.name;
-    },
-		makeOptionUnavailable(optionName){
-
-			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
-			optionToRemove.allocated = true
-
-			//save changes to database
-			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
-				method: 'put',
-				body: JSON.stringify(this.sweep),
-				headers: { 'Content-Type': 'application/json'}
-			})
-
-		}
+    }
   }
 }
 </script>
 
 <style lang="css" scoped>
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	label {
+		margin-bottom: 20px;
+	}
+	button {
+		max-width:100px;
+		padding: 5px 10px;
+	}
 </style>
