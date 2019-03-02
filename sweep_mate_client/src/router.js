@@ -10,12 +10,14 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+			props: true
     },
     {
       path: '/sweepstakes/:id',
-      name: 'single-sweepstake',
-      component: SingleSweepstake
+      name: 'singleSweepstake',
+      component: SingleSweepstake,
+			props: true
     }
     // {
     //   path: '/admin',

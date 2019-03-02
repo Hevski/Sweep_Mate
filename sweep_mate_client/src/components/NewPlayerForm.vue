@@ -8,14 +8,13 @@
 		</label>
 
 		<button type="submit" name="button">PLAY</button>
-
-  <!-- submit button v:on-click="generateChoice"-->
   </form>
 </template>
 
 <script>
 export default {
 	name: "new-player-form",
+	props: ["sweep"],
 	data(){
 		return {
 			newPlayer: {

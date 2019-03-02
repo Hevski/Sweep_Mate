@@ -1,7 +1,7 @@
 <template lang="html">
 
   <!-- <sweepstake-details/> -->
-  <new-player-form v-if="!sweepstakeClosed">
+  <new-player-form v-if="!sweepstakeClosed" :sweep="sweep">
   </new-player-form>
   <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
 
@@ -10,9 +10,20 @@
 <script>
 import NewPlayerForm from '../components/NewPlayerForm.vue'
 export default {
-  mounted() {
-    // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
-  },
+  // mounted() {
+  //   // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
+  // },
+	data(){
+		return {
+			sweep: ''
+		}
+	},
+	mounted(){
+		const id = this.$route.params.id
+		fetch("http://localhost:3000/api/sweepstakes/" + id)
+			.then(res => res.json())
+			.then(res => this.sweep = res)
+	},
 	components: {
 		NewPlayerForm
 	},
