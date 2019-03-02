@@ -12,7 +12,7 @@
 <script>
 export default {
   mounted() {
-    fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
+    // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
   }
   methods: {
     sweepstakeClosed() {

@@ -17,6 +17,18 @@ const createRouter = function (collection) {
       });
   });
 
+  router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  collection
+    .findOne({ _id: ObjectID(id) })
+    .then((doc) => res.json(doc))
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
+      res.json({ status: 500, error: err });
+    });
+});
+
   router.post('/', (req, res) => {
     const newData = req.body
     collection
@@ -41,6 +53,19 @@ const createRouter = function (collection) {
       res.status(500)
       res.json({status: 500, error: err})
     })
+  })
+
+  router.put( '/:id', (req, res) => {
+    const id = req.params.id;
+    const newContent = req.body;
+    delete newContent._id;
+    collection.findOneAndUpdate( {_id: ObjectID(id)}, { $set: newContent })
+    .then( (result) => res.json(result.value) )
+    .catch( (err) => {
+      console.error(err);
+      res.status( 500 );
+      res.json( {status: 500, error: err} );
+    });
   })
 
   return router;
