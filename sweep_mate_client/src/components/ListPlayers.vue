@@ -14,11 +14,11 @@ export default {
   components: {
     SinglePlayer
   },
-  // mounted: {
-  //   fetch("http://localhost:3000/api/players/")
-  //   .then(res => res.json())
-  //   .then(players => this.playersList.push(players))
-  // },
+  mounted() {
+    fetch("http://localhost:3000/api/players/")
+    .then(res => res.json())
+    .then(players => this.playersList = players)
+  },
   methods: {
 
   }
