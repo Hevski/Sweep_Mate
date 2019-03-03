@@ -7,8 +7,11 @@
 		<label>Email:
 			<input type="email" name="playerEmail" value="" v-model="newPlayer.email" required>
 		</label>
-
 		<button type="submit" name="button">PLAY</button>
+    <!-- <p>Your sweep is: {{pickOption()}}</p> -->
+    <!-- <div class="bowler-hat">
+      <img src="../assets/bowler.jpg" alt="">
+    </div> -->
   </form>
 
 	<modal name="email-exists">
@@ -97,4 +100,9 @@ export default {
 		max-width:100px;
 		padding: 5px 10px;
 	}
+
+  .bowler-hat {
+    /* max-width: 10px; */
+    /* max-height: 10px; */
+  }
 </style>
