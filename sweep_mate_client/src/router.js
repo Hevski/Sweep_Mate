@@ -30,7 +30,8 @@ export default new Router({
     {
       path: '/admin/sweepstakes/new',
       name: 'admin-sweepstakes-new',
-      component: AdminNewSweepstake
+      component: AdminNewSweepstake,
+      props: true
     },
     // {
     //   path: '/admin/sweepstakes/:id/edit',
