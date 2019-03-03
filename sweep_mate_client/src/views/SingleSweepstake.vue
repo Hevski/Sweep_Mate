@@ -1,7 +1,10 @@
 <template lang="html">
-	<div class="">
+  <div class="">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-		<list-players :playersList="playersList" v-if="playersList"></list-players>
+    <list-players :sweep="sweep" v-if="playersList"></list-players>
+    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
+  </div>
+
 
 		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
 	</div>
@@ -27,9 +30,12 @@ export default {
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
 		.then(res => res.json())
-		.then(res => this.sweep = res)
+		.then(res => {
+			this.sweep = res;
 
 			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
+		})
+
 	},
 	components: {
 		SweepstakeDetails,
