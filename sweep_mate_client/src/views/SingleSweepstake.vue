@@ -24,7 +24,7 @@ export default {
 			.then(res => res.json())
 			.then(res => this.sweep = res)
 
-			eventBus.$on('option-allocated', optionToRemove => this.makeOptionUnavailable(optionToRemove));
+			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 	},
 	components: {
 		NewPlayerForm
