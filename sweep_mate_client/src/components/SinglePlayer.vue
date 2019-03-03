@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
-    <div class="single-player" v-for="(player, index) in playersList" index="id">
+    <div class="single-player" v-for="(player, index) in playersList" :key="index">
       <p>Player Name: {{player.name}}</p>
-      <div class="" v-for="game in player.games">
+      <div class="" v-for="(game, index) in player.games" :key="index">
         <p>Allocated: {{game.allocatedOption}}</p>
       </div>
     </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ListPlayers from './ListPlayers.vue'
+// import ListPlayers from './ListPlayers.vue'
 export default {
   name: "SinglePlayers",
   props: ['playersList']

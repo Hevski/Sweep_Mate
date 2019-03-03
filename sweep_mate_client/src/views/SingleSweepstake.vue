@@ -1,16 +1,12 @@
 <template lang="html">
-  <div class="">
-    <div class="">
-      <list-players :playersList="playersList" v-if="playersList">
-      </list-players>
-    </div>
-    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
-    </new-player-form>
-    <p class="notification" v-else>This sweepstake is no longer available.</p>
-  </div>
-  <!-- <sweepstake-details/> -->
+	<div class="">
+		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
+		<list-players :playersList="playersList" v-if="playersList"></list-players>
 
-  <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
+		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
+	</div>
+
+	<!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
 
 </template>
 
