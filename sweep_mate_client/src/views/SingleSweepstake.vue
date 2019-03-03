@@ -4,11 +4,6 @@
     <list-players :sweep="sweep" v-if="playersList"></list-players>
     <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
   </div>
-
-
-		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
-	</div>
-
 	<!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
 
 </template>
