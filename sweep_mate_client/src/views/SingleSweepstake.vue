@@ -16,9 +16,10 @@
 
 <script>
 import { eventBus } from '../main.js';
-import NewPlayerForm from '../components/NewPlayerForm.vue'
-import ListPlayers from '../components/ListPlayers.vue'
-import SinglePlayer from '../components/SinglePlayer.vue'
+import NewPlayerForm from '../components/NewPlayerForm.vue';
+import SweepstakeDetails from '../components/SweepstakeDetails.vue';
+// import ListPlayers from '../components/ListPlayers.vue';
+
 export default {
 	data(){
 		return {
@@ -29,44 +30,40 @@ export default {
 	mounted(){
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
-			.then(res => res.json())
-			.then(res => this.sweep = res)
-    // fetch("http://localhost:3000/api/players/")
-    //   .then(res => res.json())
-    //   .then(players => this.playersList.push(players))
-    // eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
+		.then(res => res.json())
+		.then(res => this.sweep = res)
+
+			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 	},
 	components: {
-    // SweepstakeDetails,
-		NewPlayerForm,
-    ListPlayers
+		SweepstakeDetails,
+		// ListPlayers,
+		NewPlayerForm
 	},
-  methods: {
-    sweepstakeClosed() {
+	methods: {
+		sweepstakeClosed() {
 			const today = new Date();
 			const cutOffDate = new Date(this.sweep.cutOffDate);
-      //returns true if sweepstake cut off date is past
-      return today >= cutOffDate;
-    },
-    makeOptionUnavailable(optionName){
-      const optionToRemove = this.sweep.options.find( option => option.name === optionName);
-      optionToRemove.allocated = true
-      //save changes to database
-      fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
-        method: 'put',
-        body: JSON.stringify(this.sweep),
-        headers: { 'Content-Type': 'application/json'}
-      })
-    },
-    showResult() {
-      //return winners name and option
-    }
-  }
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		},
+		makeOptionUnavailable(optionName){
+			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
+			optionToRemove.allocated = true
+
+			//save changes to database
+			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
+				method: 'put',
+				body: JSON.stringify(this.sweep),
+				headers: { 'Content-Type': 'application/json'}
+			})
+		},
+		showResult() {
+			//return winners name and option
+		}
+	}
 }
 </script>
 
 <style lang="css" scoped>
-	.notification {
-		color: #F00;
-	}
 </style>
