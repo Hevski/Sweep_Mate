@@ -18,8 +18,8 @@
 
 <script>
 export default {
-  name: 'new-sweep-form'
-  props: ['']
+  name: 'new-sweep-form',
+  props: [''],
   data () {
     return {
       newSweep: {

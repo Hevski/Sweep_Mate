@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="create-new">
-      <button type="button" name="button">Create New</button>
+      <button v-on:click="createNew" type="button" name="button">Create New</button>
   </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   methods: {
     createNew() {
-      //methos do redirect create new button to newSweepForm.vue
+      // this.$route.router.go('/admin/sweepstakes/new')
+      //metho do redirect create new button to newSweepForm.vue
     }
   }
 }

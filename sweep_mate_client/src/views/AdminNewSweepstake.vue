@@ -7,10 +7,12 @@
 
 <script>
 import ListSweepstakes from '../components/ListSweepstakes'
+import newSweepForm from '../components/NewSweepForm'
 export default {
   components: {
     // ListSweepstakes,
     newSweepForm
+ }
 }
 </script>
 
