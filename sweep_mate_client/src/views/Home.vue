@@ -14,6 +14,7 @@
 
 <script>
 import SweepSummaryHome from '../components/SweepSummaryHome.vue';
+
 // import NewPlayerForm from '../components/NewPlayerForm.vue';
 export default {
   name: 'home',

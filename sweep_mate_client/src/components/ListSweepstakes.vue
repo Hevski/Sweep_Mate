@@ -17,7 +17,7 @@ export default {
   mounted() {
     fetch("http://localhost:3000/api/sweepstakes/")
     .then(res => res.json())
-    .then(sweepstakes => this.sweepsList = sweeps)
+    .then(data => this.sweepsList = data)
   },
   methods: {
 
