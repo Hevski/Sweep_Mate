@@ -1,10 +1,16 @@
 <template lang="html">
-  <list-sweepstakes></list-sweepstakes>
-  <new-sweep-form></new-sweep-form>
+  <div class="">
+    <!-- <list-sweepstakes :name="ListSweepstakes"></list-sweepstakes> -->
+    <new-sweep-form :name="newSweepForm"></new-sweep-form>
+  </div>
 </template>
 
 <script>
+import ListSweepstakes from '../components/ListSweepstakes'
 export default {
+  components: {
+    // ListSweepstakes,
+    newSweepForm
 }
 </script>
 
