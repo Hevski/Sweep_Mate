@@ -29,7 +29,8 @@ export default {
         title: "",
         picture: "",
         cutOffDate: "",
-        options: []
+        options: [],
+        finalAnswer: ""
       }
     }
   },
