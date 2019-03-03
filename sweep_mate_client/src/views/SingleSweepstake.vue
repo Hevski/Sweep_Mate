@@ -3,9 +3,8 @@
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
 		<!-- <list-players :playersList="playersList" v-if="playersList">
 		</list-players> -->
-		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
+		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep" :players="allExistingPlayers">
 		</new-player-form>
-		<!-- <p class="notification" v-else>This sweepstake is no longer available.</p> -->
 		<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
 	</div>
 </template>
@@ -19,17 +18,26 @@ import SweepstakeDetails from '../components/SweepstakeDetails.vue';
 export default {
 	data(){
 		return {
-			sweep: '',
-      playersList: []
+			sweep: null,
+			allExistingPlayers: []
+      // playersList: []
 		}
 	},
-	mounted(){
+	created(){
+		// get the sweepstake object
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
-		.then(res => res.json())
-		.then(res => this.sweep = res)
+			.then(res => res.json())
+			.then(res => this.sweep = res)
 
-			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
+		// get the list of all existing players, from this and other sweeps.
+		// Used to pass to NewPlayerForm.vue. Can also be used to filter players for this sweep.
+		fetch("http://localhost:3000/api/players/")
+			.then(res => res.json())
+			.then(res => this.allExistingPlayers = res)
+
+		// event bus listeners
+		eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 	},
 	components: {
 		SweepstakeDetails,

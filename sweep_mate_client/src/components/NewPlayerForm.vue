@@ -1,4 +1,5 @@
 <template lang="html">
+	<div>
   <form v-on:submit="createPlayer">
 		<label>Name:
 			<input type="text" name="playerName" value="" v-model="newPlayer.name" required>
@@ -9,25 +10,44 @@
 
 		<button type="submit" name="button">PLAY</button>
   </form>
+
+	<modal name="email-exists">
+		<p>This email already exists in the database.</p>
+		<p>Do you want to add this sweep to the existing account?</p>
+	</modal>
+
+</div>
 </template>
 
 <script>
 import { eventBus } from '../main.js';
+// import VModal from 'vue-js-modal';
+
+// Vue.use(VModal, {dialog: true});
+
 export default {
 	name: "new-player-form",
-	props: ["sweep"],
+	props: ["sweep", "players"],
 	data(){
 		return {
 			newPlayer: {
 				name: "",
 				email: "",
 				games: []
-			}
+			},
+			createdPlayer: null
 		}
+	},
+	mounted(){
+		this.$modal.hide('email-exists');
 	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
+			if(this.alreadyExists(this.newPlayer.email)){
+				this.$modal.show('email-exists');
+			}
+
 			// allocate option randomly
 			const pickedOption = this.pickOption();
 			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption, won: false });
@@ -55,7 +75,11 @@ export default {
 			const allocatedOption = availableOptions[selectedIndex];
 
 			return allocatedOption.name;
-    }
+    },
+		alreadyExists(emailAddress){
+			const existingPlayer = this.players.find( player => player.email === emailAddress )
+			return existingPlayer ? true : false
+		}
   }
 }
 </script>
