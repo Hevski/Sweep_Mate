@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <!-- <list-sweepstakes :name="ListSweepstakes"></list-sweepstakes> -->
-    <new-sweep-form :name="newSweepForm"></new-sweep-form>
+    <new-sweep-form></new-sweep-form>
   </div>
 </template>
 

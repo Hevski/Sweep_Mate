@@ -1,5 +1,5 @@
 <template lang="html">
-  <form class="" action="index.html" method="post">
+  <form v-on:submit="createSweep">
     <label>Title of Sweep:
 			<input type="text" name="sweepTitle" value="" v-model="newSweep.title" required>
 		</label>
@@ -28,6 +28,17 @@ export default {
         cutOffDate: "",
         options: []
       }
+    }
+  },
+  methods: {
+    createSweep(e){
+      e.preventDefault();
+
+      fetch("http://localhost:3000/api/sweepstakes/", {
+        method: 'post',
+        body: JSON.stringify(this.newSweep),
+        headers: { 'Content-Type': 'application/json'}
+      })
     }
   }
 }
