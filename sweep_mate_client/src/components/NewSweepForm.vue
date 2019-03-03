@@ -12,6 +12,9 @@
     <label>Options:
       <input type="textarea" name="options" value="" v-model="newSweep.options" required>
     </label>
+    <label>Final Answer:
+      <input type="text" name="finalAnswer" value="" v-model="newSweep.finalAnswer">
+    </label>
 		<button type="submit" name="button">CREATE</button>
   </form>
 </template>
