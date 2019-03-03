@@ -1,42 +1,67 @@
 <template lang="html">
-
+  <div class="">
+    <div class="">
+      <list-players :playersList="playersList" v-if="playersList">
+      </list-players>
+    </div>
+    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
+    </new-player-form>
+    <p class="notification" v-else>This sweepstake is no longer available.</p>
+  </div>
   <!-- <sweepstake-details/> -->
-  <new-player-form v-if="!sweepstakeClosed" :sweep="sweep">
-  </new-player-form>
+
   <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
 
 </template>
 
 <script>
-import NewPlayerForm from '../components/NewPlayerForm.vue'
+import { eventBus } from '../main.js';
+import NewPlayerForm from '../components/NewPlayerForm.vue';
+import SweepstakeDetails from '../components/SweepstakeDetails.vue';
+import ListPlayers from '../components/ListPlayers.vue';
+
 export default {
-  // mounted() {
-  //   // fetch("http://localhost:3000/api/sweepstakes/" + $route.params.id)
-  // },
 	data(){
 		return {
-			sweep: ''
+			sweep: '',
+      playersList: []
 		}
 	},
 	mounted(){
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
-			.then(res => res.json())
-			.then(res => this.sweep = res)
+		.then(res => res.json())
+		.then(res => this.sweep = res)
+
+			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 	},
 	components: {
+		SweepstakeDetails,
+		ListPlayers,
 		NewPlayerForm
 	},
-  methods: {
-    sweepstakeClosed() {
-      //returns true if sweepstake cut off date is past
-      return false;
-    },
+	methods: {
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = new Date(this.sweep.cutOffDate);
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		},
+		makeOptionUnavailable(optionName){
+			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
+			optionToRemove.allocated = true
 
-    generateResult() {
-      //return winners name and option
-    }
-  }
+			//save changes to database
+			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
+				method: 'put',
+				body: JSON.stringify(this.sweep),
+				headers: { 'Content-Type': 'application/json'}
+			})
+		},
+		showResult() {
+			//return winners name and option
+		}
+	}
 }
 </script>
 

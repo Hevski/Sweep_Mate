@@ -8,18 +8,18 @@
 			<h2>Current Games</h2>
 			<sweep-summary-home v-for="(sweep, index) in sweeps" :key="index" :sweep="sweep"></sweep-summary-home>
 		</section>
-		<new-player-form></new-player-form>
+		<!-- <new-player-form></new-player-form> -->
 	</div>
 </template>
 
 <script>
 import SweepSummaryHome from '../components/SweepSummaryHome.vue';
-import NewPlayerForm from '../components/NewPlayerForm.vue';
+// import NewPlayerForm from '../components/NewPlayerForm.vue';
 export default {
   name: 'home',
   components: {
-    SweepSummaryHome,
-		NewPlayerForm
+    SweepSummaryHome
+		// NewPlayerForm
   },
   data() {
     return {
