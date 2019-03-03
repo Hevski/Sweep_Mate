@@ -1,7 +1,12 @@
 <template lang="html">
-  <div class="">
+  <div class="admin-home">
+    <section>
+      <h1>Your Games</h1>
+    </section>
+    <section>
+      <new-sweep-button></new-sweep-button>
+    </section>
     <!-- <list-sweepstakes></list-sweepstakes> -->
-    <!-- <new-sweep-button></new-sweep-button> -->
     <!-- <game-analysis></game-analysis> -->
   </div>
 
@@ -9,10 +14,11 @@
 
 <script>
 import ListSweepstakes from '../components/ListSweepstakes'
+import newSweepButton from '../components/NewSweepButton'
 export default {
   components: {
     // ListSweepstakes,
-    // newSweepButton,
+    newSweepButton
     // gameAnalysis
   }
 }
