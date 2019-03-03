@@ -1,6 +1,8 @@
 <template lang="html">
 	<div class="single-sweep">
 		<sweepstake-details :sweep="sweep"/>
+		<!-- <list-players :playersList="playersList" v-if="playersList">
+		</list-players> -->
 		<new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
 		</new-player-form>
 		<p class="notification" v-else>This sweepstake is no longer available.</p>
@@ -12,11 +14,13 @@
 import { eventBus } from '../main.js';
 import NewPlayerForm from '../components/NewPlayerForm.vue';
 import SweepstakeDetails from '../components/SweepstakeDetails.vue';
+// import ListPlayers from '../components/ListPlayers.vue';
 
 export default {
 	data(){
 		return {
-			sweep: ''
+			sweep: '',
+      playersList: []
 		}
 	},
 	mounted(){
@@ -28,8 +32,9 @@ export default {
 			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 	},
 	components: {
-		NewPlayerForm,
-		SweepstakeDetails
+		SweepstakeDetails,
+		// ListPlayers,
+		NewPlayerForm
 	},
 	methods: {
 		sweepstakeClosed() {
