@@ -3,7 +3,6 @@
   <!-- <sweepstake-details/> -->
   <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
   </new-player-form>
-	<p class="notification" v-else>This sweepstake is no longer available.</p>
   <!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
 
 </template>
@@ -55,7 +54,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-	.notification {
-		color: #F00;
-	}
 </style>
