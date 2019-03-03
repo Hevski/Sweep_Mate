@@ -15,7 +15,7 @@
     <label>Final Answer:
       <input type="text" name="finalAnswer" value="" v-model="newSweep.finalAnswer">
     </label>
-		<button type="submit" name="button">CREATE</button>
+		<button v-on:click="optionsArray" type="submit" name="button">CREATE</button>
   </form>
 </template>
 
@@ -37,12 +37,22 @@ export default {
   methods: {
     createSweep(e){
       e.preventDefault();
-
       fetch("http://localhost:3000/api/sweepstakes/", {
         method: 'post',
         body: JSON.stringify(this.newSweep),
         headers: { 'Content-Type': 'application/json'}
       })
+    },
+
+    optionsArray() {
+      let optionsArray = this.newSweep.options.split(" ")
+      let newArray = optionsArray.map(name => {
+        let newObj = {}
+        newObj['name'] = name;
+        newObj['allocated'] = false;
+        return newObj
+      })
+      this.newSweep.options = newArray
     }
   }
 }

@@ -8,7 +8,8 @@ export default {
   // props: ['playersList'],
   data(){
     return {
-      playersList: []
+      playersList: [],
+      // SweepsPlayers: []
     }
   },
   components: {
@@ -20,7 +21,8 @@ export default {
     .then(players => this.playersList = players)
   },
   methods: {
-
+  //add players from sweep to sweepsPlayers array, list only these
+  //per sweep
   }
 }
 </script>
