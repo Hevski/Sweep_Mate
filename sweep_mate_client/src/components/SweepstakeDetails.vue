@@ -1,7 +1,8 @@
 <template lang="html">
 	<div id="sweep-details">
 		<h1>{{ sweep.title }}</h1>
-		<p>Available until: {{ cutOffDate }}</p>
+		<p v-if="!sweepstakeClosed()">Available until: {{ cutOffDate }}</p>
+		<p class="notification" v-else>This sweepstake is no longer available.</p>
 		<img :src="sweep.picture" alt="sweep.title" />
 	</div>
 </template>
@@ -9,7 +10,7 @@
 <script>
 export default {
 	name: "sweepstake-details",
-	props: ['sweep'],
+	props: ['sweep', 'sweepstakeClosed'],
 	computed: {
 		cutOffDate: function(){
 			const cutOffDate = new Date(this.sweep.cutOffDate)
@@ -25,4 +26,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	.notification {
+		color: #F00;
+	}
 </style>
