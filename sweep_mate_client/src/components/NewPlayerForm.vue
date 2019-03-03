@@ -7,9 +7,10 @@
 			<input type="email" name="playerEmail" value="" v-model="newPlayer.email" required>
 		</label>
 		<button type="submit" name="button">PLAY</button>
-    <div class="bowler-hat">
+    <!-- <p>Your sweep is: {{pickOption()}}</p> -->
+    <!-- <div class="bowler-hat">
       <img src="../assets/bowler.jpg" alt="">
-    </div>
+    </div> -->
   </form>
 </template>
 
