@@ -46,13 +46,12 @@ export default {
 
     optionsArray() {
       let optionsArray = this.newSweep.options.split(" ")
-      let newArray = optionsArray.map(name => {
+      this.newSweep.options = optionsArray.map(name => {
         let newObj = {}
         newObj['name'] = name;
         newObj['allocated'] = false;
         return newObj
       })
-      this.newSweep.options = newArray
     }
   }
 }
