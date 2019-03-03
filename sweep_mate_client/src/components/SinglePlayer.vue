@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div class="player-list">
     <div class="single-player" v-for="(player, index) in playersList" index="id">
       <p>Player Name: {{player.name}}</p>
       <div class="" v-for="game in player.games">
@@ -7,7 +7,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -22,11 +21,10 @@ export default {
 
 .single-player {
   display: flex;
-  border-style: solid;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-around;
   margin: 2px;
+}
+.player-list {
+  border-style: solid;
 }
 </style>
