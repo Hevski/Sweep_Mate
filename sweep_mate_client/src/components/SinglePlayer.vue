@@ -2,8 +2,12 @@
   <div class="">
     <div class="single-player" v-for="(player, index) in playersList" index="id">
       <p>Player Name: {{player.name}}</p>
+      <div class="" v-for="game in player.games">
+        <p>Allocated: {{game.allocatedOption}}</p>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -15,4 +19,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.single-player {
+  display: flex;
+  border-style: solid;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+  margin: 2px;
+}
 </style>

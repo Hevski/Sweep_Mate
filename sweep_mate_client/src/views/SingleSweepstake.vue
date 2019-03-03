@@ -18,7 +18,7 @@
 import { eventBus } from '../main.js';
 import NewPlayerForm from '../components/NewPlayerForm.vue';
 import SweepstakeDetails from '../components/SweepstakeDetails.vue';
-// import ListPlayers from '../components/ListPlayers.vue';
+import ListPlayers from '../components/ListPlayers.vue';
 
 export default {
 	data(){
@@ -37,7 +37,7 @@ export default {
 	},
 	components: {
 		SweepstakeDetails,
-		// ListPlayers,
+		ListPlayers,
 		NewPlayerForm
 	},
 	methods: {
