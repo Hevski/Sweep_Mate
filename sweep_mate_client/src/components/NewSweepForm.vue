@@ -45,4 +45,16 @@ export default {
 </script>
 
 <style lang="css" scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+label {
+  margin-bottom: 20px;
+}
+button {
+  max-width:100px;
+  padding: 5px 10px;
+}
 </style>
