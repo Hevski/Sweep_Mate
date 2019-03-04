@@ -16,8 +16,8 @@
 			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" required></textarea>
 		</label>
 
-		<label>Final Answer:
-			<input type="text" name="finalAnswer" v-model="sweep.finalAnswer">
+		<label :class="{disabled: !sweepstakeClosed()}">Final Answer:
+			<input type="text" name="finalAnswer" v-model="sweep.finalAnswer" :disabled="!sweepstakeClosed()">
 		</label>
 
 		<button type="submit" name="button">Save Changes</button>
@@ -36,7 +36,9 @@ export default {
 		}
 	},
 	methods: {
-		saveChanges(){
+		saveChanges(e){
+			e.preventDefault()
+
 			//first turn the comma separated string into objects
 			const sweepOptions = this.generateOptionsObjects()
 			this.amendedSweep.options = sweepOptions;
@@ -62,6 +64,13 @@ export default {
 				newObj.allocated = false
 				return newObj;
 			} )
+		},
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
+
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
 		}
 	}
 }
@@ -80,5 +89,8 @@ export default {
 	button {
 		max-width:100px;
 		padding: 5px 10px;
+	}
+	.disabled {
+		color: #848484;
 	}
 </style>

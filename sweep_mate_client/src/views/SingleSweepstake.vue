@@ -31,13 +31,6 @@ export default {
 
 			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 		})
-
-		// get the list of all existing players, from this and other sweeps.
-		// // Used to pass to NewPlayerForm.vue. Can also be used to filter players for this sweep.
-		// fetch("http://localhost:3000/api/players/")
-		// 	.then(res => res.json())
-		// 	.then(res => this.allExistingPlayers = res)
-
 	},
 	components: {
 		SweepstakeDetails,
