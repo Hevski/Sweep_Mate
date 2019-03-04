@@ -55,7 +55,6 @@ export default {
       const today = new Date();
       const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
 
-
       //returns true if sweepstake cut off date is past
       return today >= cutOffDate;
     },
@@ -91,7 +90,6 @@ export default {
      }
     }
   }
-
 }
 </script>
 

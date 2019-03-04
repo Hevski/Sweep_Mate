@@ -13,14 +13,12 @@
 		<div class="announcement" v-if="yourOption">
 			Your sweep is {{ this.yourOption }}
 		</div>
+
 	</div>
 </template>
 
 <script>
 import { eventBus } from '../main.js';
-// import VModal from 'vue-js-modal';
-
-// Vue.use(VModal, {dialog: true});
 
 export default {
 	name: "new-player-form",
@@ -33,23 +31,17 @@ export default {
 				games: []
 			},
 			yourOption: ''
-
-			// createdPlayer: null
 		}
 	},
 	mounted(){
-		// this.$modal.hide('email-exists');
 	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
-			// if(this.alreadyExists(this.newPlayer.email)){
-			// 	// this.$modal.show('email-exists');
-			// }
 
 			// allocate option randomly
 			const pickedOption = this.pickOption();
-			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption, won: false });
+			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption });
 
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
@@ -80,10 +72,6 @@ export default {
 
 			return allocatedOption.name;
     }
-		// alreadyExists(emailAddress){
-		// 	const existingPlayer = this.players.find( player => player.email === emailAddress )
-		// 	return existingPlayer ? true : false
-		// }
   }
 }
 </script>
@@ -109,9 +97,4 @@ export default {
 		font-weight: bold;
 		border: 3px dotted #999;
 	}
-
-  .bowler-hat {
-    /* max-width: 10px; */
-    /* max-height: 10px; */
-  }
 </style>
