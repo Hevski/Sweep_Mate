@@ -30,7 +30,7 @@ import { eventBus } from '../main.js';
 
 export default {
 	name: "new-player-form",
-	props: ["sweep", "players"],
+	props: ["sweep"],
 	data(){
 		return {
 			newPlayer: {
@@ -72,6 +72,7 @@ export default {
 
 					//form reset
 					this.newPlayer.name = this.newPlayer.email = ""
+					this.newPlayer.games = []
 				})
 		},
     pickOption() {
