@@ -8,6 +8,7 @@
 
 <script>
 // import SweepListItem from '../components/SweepListItem'
+import {eventBus} from '../main.js'
 import EditSweepForm from '../components/EditSweepForm.vue'
 export default {
 	name: "admin-edit-sweepstake",
@@ -23,8 +24,11 @@ export default {
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
 		.then(res => res.json())
-		.then(res => this.sweep = res )
+		.then(res => {
+			this.sweep = res
 
+			eventBus.$on('sweepstake-updated', updatedSweep => this.sweep = updatedSweep )
+		})
 	}
 }
 </script>
