@@ -55,7 +55,7 @@ export default {
       const today = new Date();
       const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
 
-<<<<<<< HEAD
+
       //returns true if sweepstake cut off date is past
       return today >= cutOffDate;
     },
@@ -79,7 +79,8 @@ export default {
         const playerHasSweep = player.games.find(game => game.game_id === this.sweep._id)
         if (playerHasSweep) {
           finalResult.push(player)
-        }
+
+}
       })
       return finalResult
     },
@@ -90,39 +91,7 @@ export default {
      }
     }
   }
-=======
-			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
-		})
-	},
-	components: {
-		SweepstakeDetails,
-		ListPlayers,
-		NewPlayerForm
-	},
-	methods: {
-		sweepstakeClosed() {
-			const today = new Date();
-			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
 
-			//returns true if sweepstake cut off date is past
-			return today >= cutOffDate;
-		},
-		makeOptionUnavailable(optionName){
-			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
-			optionToRemove.allocated = true
-
-			//save changes to database
-			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
-				method: 'put',
-				body: JSON.stringify(this.sweep),
-				headers: { 'Content-Type': 'application/json'}
-			})
-		},
-		showResult() {
-			//return winners name and option
-		}
-	}
->>>>>>> develop
 }
 </script>
 

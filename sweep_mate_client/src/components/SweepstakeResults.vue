@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     findWinner(){
-      this.winner = this.sweepsPlayers.games.find(player => player.allocatedOption === this.sweep.finalAnswer)
+      this.winner = this.sweepsPlayers.find(player => player.allocatedOption === this.sweep.finalAnswer)
     }
   }
 }
