@@ -30,7 +30,6 @@ export default {
     filterSweepPlayers(){
       const finalResult = []
       this.playersList.forEach((player) => {
-        console.log(this.sweep);
         const playerHasSweep = player.games.find(game => game.game_id === this.sweep._id)
         if (playerHasSweep) {
           finalResult.push(player)
