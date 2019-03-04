@@ -13,7 +13,7 @@
 		</label>
 
 		<label>
-			<textarea name="options" rows="8" cols="80" v-model="amendedSweep.options" required>{{ sweepOptions }}</textarea>
+			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" required></textarea>
 		</label>
 
 		<label>
