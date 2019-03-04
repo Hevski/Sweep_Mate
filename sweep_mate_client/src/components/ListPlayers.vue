@@ -1,5 +1,8 @@
 <template lang="html">
-  <single-player :playersList="playersList" :sweepsPlayers="sweepsPlayers"></single-player>
+  <div class="">
+    <single-player :playersList="playersList" :sweepsPlayers="sweepsPlayers"></single-player>
+  </div>
+
 </template>
 
 <script>
@@ -18,13 +21,23 @@ export default {
   mounted() {
     fetch("http://localhost:3000/api/players/")
     .then(res => res.json())
-    .then(players => this.playersList = players)
-    .then(players => this.sweepsPlayers = this.playersList.filter(player => player.games.game_id === this.sweep._id ))
-    .then(console.log(this.playersList))
+    .then(players => {
+      this.playersList = players
+      this.sweepsPlayers = this.filterSweepPlayers()
+    });
   },
   methods: {
-  //add players from sweep to sweepsPlayers array, list only these
-  //per sweep
+    filterSweepPlayers(){
+      const finalResult = []
+      this.playersList.forEach((player) => {
+        console.log(this.sweep);
+        const playerHasSweep = player.games.find(game => game.game_id === this.sweep._id)
+        if (playerHasSweep) {
+          finalResult.push(player)
+        }
+      })
+      return finalResult
+    }
   }
 }
 </script>
