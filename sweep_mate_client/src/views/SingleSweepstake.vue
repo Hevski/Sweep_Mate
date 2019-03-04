@@ -1,12 +1,10 @@
 <template lang="html">
   <div v-if="sweep">
-		<sweepstake-details v-if="sweep" :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-		<list-players  v-if="sweep" :sweep="sweep"></list-players>
-    <new-player-form v-if="sweep && !sweepstakeClosed()" :sweep="sweep"></new-player-form>
+		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
+		<list-players :sweep="sweep"></list-players>
+    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
+		<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
   </div>
-
-	<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
-
 </template>
 
 <script>
@@ -18,12 +16,12 @@ import ListPlayers from '../components/ListPlayers.vue';
 export default {
 	data(){
 		return {
-			sweep: null,
-			allExistingPlayers: []
+			sweep: ''
+			// allExistingPlayers: [],
       // playersList: []
 		}
 	},
-	created(){
+	mounted(){
 		// get the sweepstake object
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
@@ -35,10 +33,10 @@ export default {
 		})
 
 		// get the list of all existing players, from this and other sweeps.
-		// Used to pass to NewPlayerForm.vue. Can also be used to filter players for this sweep.
-		fetch("http://localhost:3000/api/players/")
-			.then(res => res.json())
-			.then(res => this.allExistingPlayers = res)
+		// // Used to pass to NewPlayerForm.vue. Can also be used to filter players for this sweep.
+		// fetch("http://localhost:3000/api/players/")
+		// 	.then(res => res.json())
+		// 	.then(res => this.allExistingPlayers = res)
 
 	},
 	components: {

@@ -48,9 +48,9 @@ export default {
   methods: {
 		createPlayer(e){
 			e.preventDefault();
-			if(this.alreadyExists(this.newPlayer.email)){
-				// this.$modal.show('email-exists');
-			}
+			// if(this.alreadyExists(this.newPlayer.email)){
+			// 	// this.$modal.show('email-exists');
+			// }
 
 			// allocate option randomly
 			const pickedOption = this.pickOption();
@@ -83,11 +83,11 @@ export default {
 			const allocatedOption = availableOptions[selectedIndex];
 
 			return allocatedOption.name;
-    },
-		alreadyExists(emailAddress){
-			const existingPlayer = this.players.find( player => player.email === emailAddress )
-			return existingPlayer ? true : false
-		}
+    }
+		// alreadyExists(emailAddress){
+		// 	const existingPlayer = this.players.find( player => player.email === emailAddress )
+		// 	return existingPlayer ? true : false
+		// }
   }
 }
 </script>
@@ -97,6 +97,7 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-top: 30px;
 	}
 	label {
 		margin-bottom: 20px;
@@ -106,6 +107,7 @@ export default {
 		padding: 5px 10px;
 	}
 	.announcement {
+		margin-top: 30px;
 		padding: 30px;
 		font-size: 1.2em;
 		font-weight: bold;
