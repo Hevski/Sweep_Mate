@@ -1,4 +1,8 @@
 <template lang="html">
+	<div id="sweep-edit-form">
+
+	<p v-if="notification" class="notification">{{ notification }}</p>
+
 	<form v-if="sweep" v-on:submit="saveChanges">
 		<label>Title:
 			<input type="text" id="title" name="title" v-model="amendedSweep.title" required>
@@ -24,6 +28,7 @@
 
 		<button type="submit" name="button">Save Changes</button>
 	</form>
+</div>
 </template>
 
 <script>
@@ -40,7 +45,8 @@ export default {
 				cutOffDate: this.sweep.cutOffDate,
 				options: this.sweep.options,
 				finalAnswer: this.sweep.finalAnswer
-			}
+			},
+			notification: ''
 		}
 	},
 	computed: {
@@ -64,7 +70,10 @@ export default {
 			}
 		)
 		.then( res => res.json())
-		.then( updatedSweep => eventBus.$emit('sweepstake-updated', updatedSweep) )
+		.then( updatedSweep => {
+			eventBus.$emit('sweepstake-updated', updatedSweep)
+			this.notification = "Sweepstake updated"
+		} )
 	},
 	sweepstakeClosed() {
 		const today = new Date();
@@ -78,6 +87,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	.notification {
+		padding:10px;
+		background-color: #C4F7DC;
+		border: 1px solid #64D598;
+		border-radius: 5px;
+	}
 	form {
 		display: flex;
 		flex-direction: column;
