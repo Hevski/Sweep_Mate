@@ -16,7 +16,7 @@
 			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" required></textarea>
 		</label>
 
-		<label>Final Answer: 
+		<label>Final Answer:
 			<input type="text" name="finalAnswer" v-model="sweep.finalAnswer">
 		</label>
 
@@ -30,9 +30,6 @@ import { eventBus } from '../main.js';
 export default {
 	name: "edit-sweep-form",
 	props: ['sweep'],
-	// data(){
-	// 	sweep: ''
-	// },
 	computed: {
 		sweepOptions: function(){
 			return this.sweep.options.map( option => option.name).join(', ')
