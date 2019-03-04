@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-    <list-players :sweep="sweep" v-if="playersList"></list-players>
+    <!-- <list-players :sweep="sweep" v-if="playersList"></list-players> -->
+		<list-players :sweep="sweep"></list-players>
     <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
   </div>
 
-
-  <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
+	<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
 
 </template>
 
@@ -50,7 +50,8 @@ export default {
 	methods: {
 		sweepstakeClosed() {
 			const today = new Date();
-			const cutOffDate = new Date(this.sweep.cutOffDate);
+			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
+
 			//returns true if sweepstake cut off date is past
 			return today >= cutOffDate;
 		},

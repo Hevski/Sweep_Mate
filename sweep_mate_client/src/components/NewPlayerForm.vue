@@ -1,25 +1,25 @@
 <template lang="html">
-	<div>
-  <form v-on:submit="createPlayer">
-		<label>Name:
-			<input type="text" name="playerName" value="" v-model="newPlayer.name" required>
-		</label>
-		<label>Email:
-			<input type="email" name="playerEmail" value="" v-model="newPlayer.email" required>
-		</label>
-		<button type="submit" name="button">PLAY</button>
-    <!-- <p>Your sweep is: {{pickOption()}}</p> -->
-    <!-- <div class="bowler-hat">
-      <img src="../assets/bowler.jpg" alt="">
-    </div> -->
-  </form>
+	<div id="new-layer-forms">
+		<form v-on:submit="createPlayer">
+			<label>Name:
+				<input type="text" name="playerName" value="" v-model="newPlayer.name" required>
+			</label>
+			<label>Email:
+				<input type="email" name="playerEmail" value="" v-model="newPlayer.email" required>
+			</label>
+			<button type="submit" name="button">PLAY</button>
+		</form>
 
-	<modal name="email-exists">
+		<div class="announcement" v-if="allocatedOption">
+			Your sweep is {{ this.allocatedOption }}
+		</div>
+
+		<!-- <modal name="email-exists">
 		<p>This email already exists in the database.</p>
 		<p>Do you want to add this sweep to the existing account?</p>
-	</modal>
+	</modal> -->
 
-</div>
+	</div>
 </template>
 
 <script>
@@ -38,17 +38,18 @@ export default {
 				email: "",
 				games: []
 			},
-			createdPlayer: null
+			allocatedOption: ''
+			// createdPlayer: null
 		}
 	},
 	mounted(){
-		this.$modal.hide('email-exists');
+		// this.$modal.hide('email-exists');
 	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
 			if(this.alreadyExists(this.newPlayer.email)){
-				this.$modal.show('email-exists');
+				// this.$modal.show('email-exists');
 			}
 
 			// allocate option randomly
@@ -63,7 +64,11 @@ export default {
 			})
 				.then(res => res.json())
 				.then(player => {
-					eventBus.$emit('option-allocated', player.games[player.games.length-1].allocatedOption)
+					//announce choice
+					this.allocatedOption = player.games[player.games.length-1].allocatedOption
+
+					// pass it over to set the corresponding sweep's option as allocated
+					eventBus.$emit('option-allocated', this.allocatedOption )
 
 					//form reset
 					this.newPlayer.name = this.newPlayer.email = ""
@@ -99,6 +104,12 @@ export default {
 	button {
 		max-width:100px;
 		padding: 5px 10px;
+	}
+	.announcement {
+		padding: 30px;
+		font-size: 1.2em;
+		font-weight: bold;
+		border: 3px dotted #999;
 	}
 
   .bowler-hat {
