@@ -1,10 +1,6 @@
 <template lang="html">
-<<<<<<< HEAD
-  <div class="player-list">
-=======
 
-  <div v-if="sweepsPlayers" class="player-list">
->>>>>>> develop
+  <div class="player-list">
     <div class="single-player" v-for="(player, index) in sweepsPlayers" :key="index">
       <p>Player Name: {{player.name}}</p>
       <div class="" v-for="(game, index) in player.games" :key="index" >
