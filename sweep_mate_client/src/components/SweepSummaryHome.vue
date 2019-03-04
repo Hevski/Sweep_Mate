@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="sweep-summary" :style="style">
     <h3>{{sweep.title}}</h3>
-    <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" class="button">PLAY</router-link>
+    <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" tag="button">PLAY</router-link>
   </div>
 </template>
 
