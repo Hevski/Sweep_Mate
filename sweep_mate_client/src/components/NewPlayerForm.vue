@@ -100,10 +100,33 @@ export default {
 	label {
 		margin-bottom: 20px;
 	}
-	button {
+	/* button {
 		max-width:100px;
 		padding: 5px 10px;
+	} */
+
+	button {
+		padding: 15px 25px;
+		font-size: 24px;
+		text-align: center;
+		cursor: pointer;
+		outline: none;
+		color: #fff;
+		background-color: #0820d4;
+		border: none;
+		border-radius: 15px;
+		box-shadow: 0 9px #999;
+		margin-bottom: 10px;
 	}
+
+	button:hover {background-color: #ff0000;}
+
+	button:active {
+		background-color: #3e8e41;
+		box-shadow: 0 5px #666;
+		transform: translateY(4px);
+	}
+
 	.announcement {
 		margin-top: 30px;
 		padding: 30px;
@@ -123,11 +146,11 @@ export default {
 20% { transform: translate(-3px, 0px) rotate(1deg); }
 30% { transform: translate(3px, 2px) rotate(0deg); }
 40% { transform: translate(1px, -1px) rotate(1deg); }
-50% { transform: translate(-1px, 2px) rotate(-1deg); }
+50% { transform: translate(-1px, 2px) rotate(-2deg); }
 60% { transform: translate(-3px, 1px) rotate(0deg); }
-70% { transform: translate(3px, 1px) rotate(-1deg); }
-80% { transform: translate(-1px, -1px) rotate(1deg); }
+70% { transform: translate(3px, 1px) rotate(-2deg); }
+80% { transform: translate(-1px, -1px) rotate(2deg); }
 90% { transform: translate(1px, 2px) rotate(0deg); }
-100% { transform: translate(1px, -2px) rotate(-1deg); }
+100% { transform: translate(1px, -2px) rotate(-2deg); }
 }
 </style>

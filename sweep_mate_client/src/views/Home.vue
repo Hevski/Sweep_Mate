@@ -46,4 +46,10 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
+
+	h1 {
+		font-family: 'Righteous', cursive;
+		font-size: 50px;
+		margin-bottom: 2px
+	}
 </style>

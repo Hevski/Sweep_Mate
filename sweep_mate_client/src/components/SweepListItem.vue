@@ -32,4 +32,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
+button {
+padding: 15px 25px;
+font-size: 24px;
+text-align: center;
+cursor: pointer;
+outline: none;
+color: #fff;
+background-color: #0820d4;
+border: none;
+border-radius: 15px;
+box-shadow: 0 9px #999;
+margin-left: 10px;
+}
+
+button:hover {background-color: #ff0000;}
+
+button:active {
+background-color: #3e8e41;
+box-shadow: 0 5px #666;
+transform: translateY(4px);
+}
 </style>
