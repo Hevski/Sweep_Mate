@@ -1,11 +1,11 @@
 <template lang="html">
   <list-sweepstakes></list-sweepstakes>
-  <edit-sweep-form></edit-sweep-form>
-  <list-players></list-players>
+  <!-- <edit-sweep-form></edit-sweep-form>
+  <list-players></list-players> -->
 </template>
 
 <script>
-import SweepListItem from '../components/SweepListItem'
+// import SweepListItem from '../components/SweepListItem'
 export default {
 }
 </script>
