@@ -33,6 +33,7 @@ export default {
 				games: []
 			},
 			yourOption: ''
+
 			// createdPlayer: null
 		}
 	},
