@@ -13,12 +13,6 @@
 		<div class="announcement" v-if="yourOption">
 			Your sweep is {{ this.yourOption }}
 		</div>
-
-		<!-- <modal name="email-exists">
-		<p>This email already exists in the database.</p>
-		<p>Do you want to add this sweep to the existing account?</p>
-	</modal> -->
-
 	</div>
 </template>
 

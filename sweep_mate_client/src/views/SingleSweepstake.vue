@@ -1,9 +1,9 @@
 <template lang="html">
   <div v-if="sweep">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-		<list-players :sweep="sweep"></list-players>
+		<list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
     <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
-		<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->
+		<sweepstake-results :sweepsPlayers="sweepsPlayers" v-else="showResult"></sweepstake-results>
   </div>
 </template>
 
@@ -12,13 +12,14 @@ import { eventBus } from '../main.js';
 import NewPlayerForm from '../components/NewPlayerForm.vue';
 import SweepstakeDetails from '../components/SweepstakeDetails.vue';
 import ListPlayers from '../components/ListPlayers.vue';
+import sweepstakeResults from '../components/SweepstakeResults.vue';
 
 export default {
 	data(){
 		return {
-			sweep: ''
-			// allExistingPlayers: [],
-      // playersList: []
+			sweep: '',
+      playersList: [],
+      sweepsPlayers: []
 		}
 	},
 	mounted(){
@@ -31,18 +32,19 @@ export default {
 
 			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
 		})
-
-		// get the list of all existing players, from this and other sweeps.
-		// // Used to pass to NewPlayerForm.vue. Can also be used to filter players for this sweep.
-		// fetch("http://localhost:3000/api/players/")
-		// 	.then(res => res.json())
-		// 	.then(res => this.allExistingPlayers = res)
+    fetch("http://localhost:3000/api/players/")
+    .then(res => res.json())
+    .then(players => {
+      this.playersList = players
+      this.sweepsPlayers = this.filterSweepPlayers()
+    });
 
 	},
 	components: {
 		SweepstakeDetails,
 		ListPlayers,
-		NewPlayerForm
+		NewPlayerForm,
+    sweepstakeResults
 	},
 	methods: {
 		sweepstakeClosed() {
@@ -64,8 +66,18 @@ export default {
 			})
 		},
 		showResult() {
-			//return winners name and option
-		}
+			//.find player check that allocated option === final answer
+		},
+    filterSweepPlayers(){
+      const finalResult = []
+      this.playersList.forEach((player) => {
+        const playerHasSweep = player.games.find(game => game.game_id === this.sweep._id)
+        if (playerHasSweep) {
+          finalResult.push(player)
+        }
+      })
+      return finalResult
+    }
 	}
 }
 </script>
