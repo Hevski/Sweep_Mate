@@ -10,8 +10,8 @@
 <script>
 import ListSweepstakes from './ListSweepstakes.vue'
 export default {
-  name: "SingleSweeps",
-  props: ['sweepsList']
+  name: "SweepsListItem",
+  props: ['']
 }
 
 
