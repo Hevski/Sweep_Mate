@@ -55,7 +55,7 @@ export default {
 					this.yourOption = player.games[player.games.length-1].allocatedOption
 
 					// pass it over to set the corresponding sweep's option as allocated
-					eventBus.$emit('option-allocated', this.yourOption )
+					eventBus.$emit('option-allocated', this.newPlayer )
 
 					//form reset
 					this.newPlayer.name = this.newPlayer.email = ""
@@ -64,7 +64,7 @@ export default {
 		},
     pickOption() {
 			// find all available options
-			const availableOptions = this.sweep.options.filter(option => option.allocated === false );
+			const availableOptions = this.sweep.options.filter(option => option.allocatedTo === '' );
 
 			// allocate one of the available options randomly
 			const selectedIndex = Math.floor(Math.random() * Math.floor(availableOptions.length - 1));

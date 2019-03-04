@@ -46,7 +46,7 @@ export default {
       this.newSweep.options = optionsArray.map(name => {
         let newObj = {}
         newObj['name'] = name;
-        newObj['allocated'] = false;
+        newObj['allocatedTo'] = '';
         return newObj
       })
     }
