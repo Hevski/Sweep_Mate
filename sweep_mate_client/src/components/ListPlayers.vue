@@ -1,8 +1,5 @@
 <template lang="html">
-  <div class="">
     <single-player :playersList="playersList" :sweepsPlayers="sweepsPlayers"></single-player>
-  </div>
-
 </template>
 
 <script>
