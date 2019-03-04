@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ListSweepstakes from '../components/ListSweepstakes'
+// import ListSweepstakes from '../components/ListSweepstakes'
 import newSweepForm from '../components/NewSweepForm'
 export default {
   components: {

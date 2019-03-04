@@ -1,14 +1,10 @@
 <template lang="html">
   <div class="">
-    <div class="">
-      <list-players :sweep="sweep" v-if="playersList">
-      </list-players>
-    </div>
-    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep">
-    </new-player-form>
-    <p class="notification" v-else>This sweepstake is no longer available.</p>
+		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
+    <list-players v-if="sweep" :sweep="sweep"></list-players>
+    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
   </div>
-  <!-- <sweepstake-details/> -->
+
 
   <!-- <sweepstake-results v-else="generateResult"></sweepstake-results> -->
 
@@ -31,9 +27,12 @@ export default {
 		const id = this.$route.params.id
 		fetch("http://localhost:3000/api/sweepstakes/" + id)
 		.then(res => res.json())
-		.then(res => this.sweep = res)
+		.then(res => {
+			this.sweep = res;
 
 			eventBus.$on('option-allocated', allocatedOption => this.makeOptionUnavailable(allocatedOption));
+		})
+
 	},
 	components: {
 		SweepstakeDetails,
