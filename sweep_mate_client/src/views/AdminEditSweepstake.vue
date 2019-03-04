@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import SweepListItem from '../components/SweepListItem'
 export default {
 }
 </script>
