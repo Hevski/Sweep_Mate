@@ -30,9 +30,16 @@ import { eventBus } from '../main.js';
 export default {
 	name: "edit-sweep-form",
 	props: ['sweep'],
+	data(){
+		return {
+			amendedSweep: this.sweep
+		}
+	},
 	computed: {
 		sweepOptions: function(){
-			return this.sweep.options.map( option => option.name).join(', ')
+			const optionsAsString = this.sweep.options.map( option => option.name).join(', ')
+
+			return optionsAsString
 		}
 	},
 	methods: {
@@ -40,10 +47,10 @@ export default {
 			e.preventDefault()
 
 			//first turn the comma separated string into objects
-			const sweepOptions = this.generateOptionsObjects()
-			this.amendedSweep.options = sweepOptions;
+			// const sweepOptions = this.generateOptionsObjects()
+			// this.amendedSweep.options = sweepOptions;
 
-			const id = this.sweep._id
+			const id = this.amendedSweep._id
 
 			// then save the changes into the db
 			fetch("http://localhost:3000/api/sweepstakes/" + id, {
