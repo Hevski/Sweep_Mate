@@ -6,7 +6,7 @@
     <section>
       <new-sweep-button></new-sweep-button>
     </section>
-    <!-- <list-sweepstakes></list-sweepstakes> -->
+    <list-sweepstakes></list-sweepstakes>
     <!-- <game-analysis></game-analysis> -->
   </div>
 
@@ -17,7 +17,7 @@ import ListSweepstakes from '../components/ListSweepstakes'
 import newSweepButton from '../components/NewSweepButton'
 export default {
   components: {
-    // ListSweepstakes,
+    ListSweepstakes,
     newSweepButton
     // gameAnalysis
   }

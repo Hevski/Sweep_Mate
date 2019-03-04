@@ -1,11 +1,15 @@
 <template lang="html">
-  <div class="player-list">
-    <div class="single-player" v-for="(player, index) in playersList" :key="index">
+
+  <div v-if="sweepsPlayers" class="player-list">
+    <div class="single-player" v-for="(player, index) in sweepsPlayers" :key="index">
       <p>Player Name: {{player.name}}</p>
-      <div class="" v-for="(game, index) in player.games" :key="index">
+      <div class="" v-for="(game, index) in player.games" :key="index" >
         <p>Allocated: {{game.allocatedOption}}</p>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <p>Play to be the first!</p>
   </div>
 </template>
 
@@ -13,7 +17,7 @@
 // import ListPlayers from './ListPlayers.vue'
 export default {
   name: "SinglePlayers",
-  props: ['playersList', 'sweepsPlayers']
+  props: ['sweepsPlayers']
 }
 </script>
 

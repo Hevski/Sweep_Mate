@@ -45,7 +45,7 @@ export default {
     },
 
     optionsArray() {
-      let optionsArray = this.newSweep.options.split(" ")
+      let optionsArray = this.newSweep.options.split(", ")
       this.newSweep.options = optionsArray.map(name => {
         let newObj = {}
         newObj['name'] = name;
