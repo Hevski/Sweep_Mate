@@ -14,8 +14,8 @@
 			<input type="date" name="date" v-model="sweep.cutOffDate" required>
 		</label>
 
-		<label> Sweepstake Options (please list them all, separated by comma):
-			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" required></textarea>
+		<label> Sweepstake Options (sorry, not editable just now):
+			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea>
 		</label>
 
 		<label :class="{disabled: !sweepstakeClosed()}">Final Answer:
@@ -48,10 +48,6 @@ export default {
 		saveChanges(e){
 			e.preventDefault()
 
-			//first turn the comma separated string into objects
-			// const sweepOptions = this.generateOptionsObjects()
-			// this.amendedSweep.options = sweepOptions;
-
 			const id = this.amendedSweep._id
 
 			// then save the changes into the db
@@ -63,16 +59,6 @@ export default {
 			)
 			.then(res => res.json())
 			.then(res => eventBus.$emit('sweepstake-updated', res))
-		},
-		generateOptionsObjects(){
-			//turn comma separated string into objects. See NewSweepFrom, could be passed over?
-			const arrayOfOptions = this.amendedSweep.options.split(', ')
-			return arrayOfOptions.map( option => {
-				let newObj = {};
-				newObj.name = option;
-				newObj.allocated = false //TODO this should inherit what we had from the original sweep, not reset it to false.
-				return newObj;
-			} )
 		},
 		sweepstakeClosed() {
 			const today = new Date();
