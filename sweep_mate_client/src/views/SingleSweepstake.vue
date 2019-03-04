@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="">
-		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-    <!-- <list-players :sweep="sweep" v-if="playersList"></list-players> -->
+		<sweepstake-details v-if="sweep" :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
 		<list-players :sweep="sweep"></list-players>
-    <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
+    <new-player-form v-if="sweep && !sweepstakeClosed()" :sweep="sweep"></new-player-form>
   </div>
 
 	<!-- <sweepstake-results v-else="showResult"></sweepstake-results> -->

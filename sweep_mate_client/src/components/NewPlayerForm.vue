@@ -10,8 +10,8 @@
 			<button type="submit" name="button">PLAY</button>
 		</form>
 
-		<div class="announcement" v-if="allocatedOption">
-			Your sweep is {{ this.allocatedOption }}
+		<div class="announcement" v-if="yourOption">
+			Your sweep is {{ this.yourOption }}
 		</div>
 
 		<!-- <modal name="email-exists">
@@ -38,7 +38,7 @@ export default {
 				email: "",
 				games: []
 			},
-			allocatedOption: ''
+			yourOption: ''
 			// createdPlayer: null
 		}
 	},
@@ -65,10 +65,10 @@ export default {
 				.then(res => res.json())
 				.then(player => {
 					//announce choice
-					this.allocatedOption = player.games[player.games.length-1].allocatedOption
+					this.yourOption = player.games[player.games.length-1].allocatedOption
 
 					// pass it over to set the corresponding sweep's option as allocated
-					eventBus.$emit('option-allocated', this.allocatedOption )
+					eventBus.$emit('option-allocated', this.yourOption )
 
 					//form reset
 					this.newPlayer.name = this.newPlayer.email = ""
