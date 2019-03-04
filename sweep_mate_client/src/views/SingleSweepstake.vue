@@ -4,7 +4,7 @@
     <p>{{message}}</p>
     <list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
     <new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
-    <sweepstake-results :sweepsPlayers="sweepsPlayers" v-else="showResult"></sweepstake-results>
+    <sweepstake-results :sweepsPlayers="sweepsPlayers"></sweepstake-results>
   </div>
 </template>
 
@@ -68,9 +68,6 @@ export default {
         body: JSON.stringify(this.sweep),
         headers: { 'Content-Type': 'application/json'}
       })
-    },
-    showResult() {
-      //.find player check that allocated option === final answer
     },
     filterSweepPlayers(){
       const finalResult = []
