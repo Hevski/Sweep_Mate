@@ -19,7 +19,7 @@ db.sweepstakes.insertMany([
   {
     title: "Great British Bake Off",
     picture: "https://thegreatbritishbakeoff.co.uk/wp-content/uploads/2018/09/BAKERS3-1024x450.png",
-    cutOffDate: "08-07-2019",
+    cutOffDate: "2019-08-07",
     options: [
       {name: "Antony", allocated: false},
       {name: "Briony", allocated: false},
