@@ -8,6 +8,8 @@
 			<input type="url" name="picture" v-model="sweep.picture" required>
 		</label>
 
+		<img id="sweep-picture" :src="sweep.picture" alt="sweep.title" v-if="sweep.picture"/>
+
 		<label>Cut-off Date:
 			<input type="date" name="date" v-model="sweep.cutOffDate" required>
 		</label>
@@ -68,7 +70,7 @@ export default {
 			return arrayOfOptions.map( option => {
 				let newObj = {};
 				newObj.name = option;
-				newObj.allocated = false
+				newObj.allocated = false //TODO this should inherit what we had from the original sweep, not reset it to false.
 				return newObj;
 			} )
 		},
@@ -99,5 +101,9 @@ export default {
 	}
 	.disabled {
 		color: #848484;
+	}
+	#sweep-picture {
+		 height: 200px;
+		 margin-bottom: 20px;
 	}
 </style>
