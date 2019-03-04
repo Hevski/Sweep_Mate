@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="">
+  <div>
     <h2>Winner: {{winner.name}}</h2>
-    <h2>Result: {{winner.allocatedOption}}</h2>
+    <h2>Result: {{winner.finalAnswer}}</h2>
   </div>
 </template>
 
@@ -15,7 +15,13 @@ export default {
   },
   methods: {
     findWinner(){
-      this.winner = this.sweepsPlayers.games.find(player => player.allocatedOption === this.sweep.finalAnswer)
+      this.sweepsPlayers.forEach(player => {
+      const hasWinningOption = player.games.find(game => game.allocatedOption === this.sweep.finalAnswer)
+      if (hasWinningOption) {
+        this.winner = player
+        return
+      }
+    })
     }
   }
 }
