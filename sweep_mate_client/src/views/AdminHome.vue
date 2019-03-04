@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import ListSweepstakes from '../components/ListSweepstakes'
+// import ListSweepstakes from '../components/ListSweepstakes'
 import newSweepButton from '../components/NewSweepButton'
 export default {
   components: {

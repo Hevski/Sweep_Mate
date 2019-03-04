@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-    <list-players :sweep="sweep" v-if="playersList"></list-players>
+    <list-players v-if="sweep" :sweep="sweep"></list-players>
     <new-player-form v-if="!sweepstakeClosed()" :sweep="sweep"></new-player-form>
   </div>
 
