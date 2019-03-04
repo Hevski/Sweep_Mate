@@ -10,19 +10,19 @@ export default {
   props: ['sweepsPlayers', 'sweep'],
   data(){
     return {
-      winner: ""
+      winner: ''
     }
   },
   methods: {
-    findWinner(){
-      this.sweepsPlayers.forEach(player => {
-      const hasWinningOption = player.games.find(game => game.allocatedOption === this.sweep.finalAnswer)
-      if (hasWinningOption) {
-        this.winner = player
-        return
-      }
-    })
-    }
+    // findWinner(){
+    //   this.sweepsPlayers.forEach(player => {
+    //   const hasWinningOption = player.games.find(game => game.allocatedOption === this.sweep.finalAnswer)
+    //   if (hasWinningOption) {
+    //     return this.winner = player
+    //
+    //   }
+    // })
+    // }
   }
 }
 </script>

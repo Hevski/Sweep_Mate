@@ -4,7 +4,7 @@
     <p>{{message}}</p>
     <list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
     <new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
-    <sweepstake-results :sweepsPlayers="sweepsPlayers" v-else="showResult"></sweepstake-results>
+    <sweepstake-results :sweep="sweep" :sweepsPlayers="sweepsPlayers" v-else=""></sweepstake-results>
   </div>
 </template>
 
@@ -22,7 +22,8 @@ export default {
       playersList: [],
       sweepsPlayers: [],
       message: '',
-      optionsLength: 0
+      optionsLength: 0,
+      winner: ''
     }
   },
   mounted(){
@@ -42,7 +43,8 @@ export default {
     .then(players => {
       this.playersList = players
       this.sweepsPlayers = this.filterSweepPlayers()
-    });
+      this.winner = this.findWinner()
+    })
   },
   components: {
     SweepstakeDetails,
@@ -86,7 +88,17 @@ export default {
       if (this.optionsLength < 1) {
       this.message = "Sweep full"
      }
-    }
+   },
+   findWinner(){
+     let winner = ''
+     this.sweepsPlayers.forEach(player => {
+     const hasWinningOption = player.games.find(game => game.allocatedOption === this.sweep.finalAnswer)
+     if (hasWinningOption) {
+       winner = player
+     }
+     return winner
+   })
+   }
   }
 }
 </script>

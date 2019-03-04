@@ -4,14 +4,14 @@
       <h3>{{sweep.title}}</h3>
       <router-link :to="{name: 'admin-sweepstakes-edit', params: {id: sweep._id}}" class="button">Edit</router-link>
       <button type="button" name="delete-sweep" v-on:click="deleteSweep(sweep._id)">Delete</button>
-      <button type="button" name="publish-sweep" v-on:click="">Publish</button>
+      <button type="button" name="publish-sweep">Publish</button>
     </div>
 
   </div>
 </template>
 
 <script>
-import ListSweepstakes from './ListSweepstakes.vue'
+// import ListSweepstakes from './ListSweepstakes.vue'
 import {eventBus} from '../main.js'
 export default {
   name: "SweepsListItem",
