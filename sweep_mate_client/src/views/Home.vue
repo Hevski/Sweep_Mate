@@ -47,7 +47,8 @@ export default {
 	h1 {
 		font-family: 'Righteous', cursive;
 		font-size: 50px;
-		margin-bottom: 2px
+		margin-bottom: 2px;
+		margin-top: 10px;
 	}
 
 	@media (min-width:768px) {
