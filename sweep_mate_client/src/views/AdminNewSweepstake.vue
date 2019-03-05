@@ -7,11 +7,10 @@
 
 <script>
 // import ListSweepstakes from '../components/ListSweepstakes'
-import newSweepForm from '../components/NewSweepForm'
+import NewSweepForm from '../components/NewSweepForm'
 export default {
   components: {
-    // ListSweepstakes,
-    newSweepForm
+    NewSweepForm
  }
 }
 </script>
