@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/admin">Master Login</router-link>
+      <router-link to="/">Home</router-link>
+      <router-link to="/admin">Admin Area</router-link>
     </div>
     <router-view/>
   </div>
@@ -20,7 +20,10 @@
 	margin-right: auto;
 }
 #nav {
-  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
 }
 
 #nav a {
@@ -29,7 +32,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #155CAF;
 }
 
 button, .button {
@@ -57,5 +60,28 @@ button:active, .button:active {
 background-color: #3e8e41;
 box-shadow: 0 5px 5px #666;
 transform: translateY(4px);
+}
+
+#nav a  {
+ float: left;
+ padding: 16px;
+ color: white;
+ text-decoration: none;
+ font-size: 17px;
+ margin-bottom: 10px;
+ overflow: auto;
+ background-color: #FFA00B;
+ margin-left: 20px;
+}
+
+.active {
+ background-color: #FFA00B;
+}
+
+@media screen and (max-width: 500px) {
+#nav a {
+   float: none;
+   display: block;
+ }
 }
 </style>

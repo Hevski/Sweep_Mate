@@ -67,4 +67,22 @@ button {
   max-width:100px;
   padding: 5px 10px;
 }
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left; /*Change to right here if you want it close to the inputs*/
+}
+input {
+  display: inline-block;
+  float: right;
+  
+}
+
+
+
+
+
 </style>
