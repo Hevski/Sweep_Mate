@@ -44,7 +44,6 @@ export default {
       this.playersList = players
       this.sweepsPlayers = this.filterSweepPlayers()
       this.winner = this.findWinner()
-      console.log(this.winner);
     })
   },
   components: {
