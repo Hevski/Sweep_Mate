@@ -39,6 +39,15 @@ export default {
 
 <style lang="css" scoped>
 
+img {
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+img:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
 	#sweeps-container {
 		display: flex;
 		flex-direction: column;
