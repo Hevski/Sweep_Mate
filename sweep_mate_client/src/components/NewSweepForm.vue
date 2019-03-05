@@ -13,7 +13,7 @@
     </label>
     <label>Options: (seperate by commas)
       <!-- <input type="textarea" rows="4" cols="50" name="options" value="" v-model="newSweep.options" required> -->
-      <textarea rows="8" cols="40" name="options" v-model="newSweep.options" require></textarea>
+      <textarea rows="8" cols="40" name="options" v-model="newSweep.options" require placeholder="Enter options seperated by comma"></textarea>
     </label>
 		<button v-on:click="optionsArray" type="submit" name="button">CREATE</button>
   </form>
