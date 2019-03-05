@@ -1,103 +1,128 @@
 <template lang="html">
-	<form v-if="sweep" v-on:submit="saveChanges">
-		<label>Title:
-			<input type="text" id="title" name="title" v-model="sweep.title" required>
-		</label>
+	<div id="sweep-edit-form">
 
-		<label>Picture URL:
-			<input type="url" name="picture" v-model="sweep.picture" required>
-		</label>
+		<p v-if="notification" class="notification">{{ notification }}</p>
 
-		<label>Cut-off Date:
-			<input type="date" name="date" v-model="sweep.cutOffDate" required>
-		</label>
+		<form v-if="sweep" v-on:submit="saveChanges">
+			<label for="title">Title:		</label>
+			<input type="text" id="title" name="title" v-model="amendedSweep.title" required>
 
-		<label> Sweepstake Options (please list them all, separated by comma):
-			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" required></textarea>
-		</label>
+			<label for="picture">Picture URL:		</label>
+			<input type="url" id="picture" name="picture" v-model="amendedSweep.picture" required>
 
-		<label :class="{disabled: !sweepstakeClosed()}">Final Answer:
-			<input type="text" name="finalAnswer" v-model="sweep.finalAnswer" :disabled="!sweepstakeClosed()">
-		</label>
+			<img id="sweep-picture" :src="amendedSweep.picture" alt="sweep.title" v-if="sweep.picture"/>
 
-		<button type="submit" name="button">Save Changes</button>
-	</form>
+			<label for="date">Cut-off Date:</label>
+			<input type="date" id="date" name="date" v-model="amendedSweep.cutOffDate" required>
+
+			<fieldset>
+				<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
+				<!-- <textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea> -->
+				<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
+			</fieldset>
+
+			<label for="finalAnswer" :class="{disabled: !sweepstakeClosed()}">Final Answer:</label>
+			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed()">
+
+			<button type="submit" name="button">Save Changes</button>
+		</form>
+	</div>
 </template>
 
 <script>
 import { eventBus } from '../main.js';
+import OptionList from './OptionList.vue'
 
 export default {
 	name: "edit-sweep-form",
 	props: ['sweep'],
 	data(){
 		return {
-			amendedSweep: this.sweep
+			amendedSweep: {
+				title: this.sweep.title,
+				picture: this.sweep.picture,
+				cutOffDate: this.sweep.cutOffDate,
+				options: this.sweep.options,
+				finalAnswer: this.sweep.finalAnswer
+			},
+			notification: ''
 		}
 	},
-	computed: {
-		sweepOptions: function(){
-			const optionsAsString = this.sweep.options.map( option => option.name).join(', ')
-
-			return optionsAsString
-		}
+	components: {
+		OptionList
 	},
 	methods: {
 		saveChanges(e){
 			e.preventDefault()
 
-			//first turn the comma separated string into objects
-			// const sweepOptions = this.generateOptionsObjects()
-			// this.amendedSweep.options = sweepOptions;
-
-			const id = this.amendedSweep._id
+			const id = this.sweep._id
 
 			// then save the changes into the db
 			fetch("http://localhost:3000/api/sweepstakes/" + id, {
 				method: 'put',
 				body: JSON.stringify(this.amendedSweep),
 				headers: { 'Content-Type': 'application/json'}
-				}
-			)
-			.then(res => res.json())
-			.then(res => eventBus.$emit('sweepstake-updated', res))
-		},
-		generateOptionsObjects(){
-			//turn comma separated string into objects. See NewSweepFrom, could be passed over?
-			const arrayOfOptions = this.amendedSweep.options.split(', ')
-			return arrayOfOptions.map( option => {
-				let newObj = {};
-				newObj.name = option;
-				newObj.allocated = false
-				return newObj;
-			} )
-		},
-		sweepstakeClosed() {
-			const today = new Date();
-			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
+			}
+		)
+		.then( res => res.json())
+		.then( updatedSweep => {
+			eventBus.$emit('sweepstake-updated', updatedSweep)
+			this.notification = "Sweepstake updated"
+		} )
+	},
+	sweepstakeClosed() {
+		const today = new Date();
+		const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
 
-			//returns true if sweepstake cut off date is past
-			return today >= cutOffDate;
-		}
+		//returns true if sweepstake cut off date is past
+		return today >= cutOffDate;
 	}
+}
 }
 </script>
 
 <style lang="css" scoped>
+	.notification {
+		padding:10px;
+		background-color: #C4F7DC;
+		border: 1px solid #64D598;
+		border-radius: 5px;
+	}
 	form {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin-top: 30px;
 	}
-	label {
+	input {
+		padding: 5px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		font-size: 0.9em;
 		margin-bottom: 20px;
 	}
 	button {
-		max-width:100px;
+		max-width:170px;
 		padding: 5px 10px;
+		font-size: 0.9em;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 3px 3px 3px #ddd;
+		transition: box-shadow 400ms ease;
+		cursor: pointer;
+	}
+	button:hover{
+		box-shadow: 0 0 0 #fff;
+	}
+	fieldset {
+		display: flex;
+		flex-direction: column;
+		border: 0;
 	}
 	.disabled {
 		color: #848484;
+	}
+	#sweep-picture {
+		height: 200px;
+		margin-bottom: 20px;
 	}
 </style>

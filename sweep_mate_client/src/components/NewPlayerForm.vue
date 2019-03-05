@@ -20,9 +20,6 @@
 
 <script>
 import { eventBus } from '../main.js';
-// import VModal from 'vue-js-modal';
-
-// Vue.use(VModal, {dialog: true});
 
 export default {
 	name: "new-player-form",
@@ -35,23 +32,15 @@ export default {
 				games: []
 			},
 			yourOption: ''
-
-			// createdPlayer: null
 		}
-	},
-	mounted(){
-		// this.$modal.hide('email-exists');
 	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
-			// if(this.alreadyExists(this.newPlayer.email)){
-			// 	// this.$modal.show('email-exists');
-			// }
 
 			// allocate option randomly
 			const pickedOption = this.pickOption();
-			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption, won: false });
+			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption });
 
 			//create new player
 			fetch("http://localhost:3000/api/players/", {
@@ -82,10 +71,6 @@ export default {
 
 			return allocatedOption.name;
     }
-		// alreadyExists(emailAddress){
-		// 	const existingPlayer = this.players.find( player => player.email === emailAddress )
-		// 	return existingPlayer ? true : false
-		// }
   }
 }
 </script>
@@ -100,23 +85,23 @@ export default {
 	label {
 		margin-bottom: 20px;
 	}
-	/* button {
+	input {
+		padding: 5px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		font-size: 0.9em;
+	}
+	button {
 		max-width:100px;
 		padding: 5px 10px;
-	} */
-
-	button {
-		padding: 15px 25px;
-		font-size: 24px;
-		text-align: center;
+		font-size: 0.9em;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 3px 3px 3px #ddd;
+		transition: box-shadow 400ms ease;
 		cursor: pointer;
-		outline: none;
-		color: #fff;
-		background-color: #0820d4;
-		border: none;
-		border-radius: 15px;
-		box-shadow: 0 9px #999;
-		margin-bottom: 10px;
+	}
+	button:hover{
+		box-shadow: 0 0 0 #fff;
 	}
 
 	button:hover {background-color: #ff0000;}
