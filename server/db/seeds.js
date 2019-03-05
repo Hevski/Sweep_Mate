@@ -35,5 +35,5 @@ db.sweepstakes.insertMany([
       {name: "Terry", allocatedTo: ''}
     ],
     finalAnswer: ""
-  }
+  },
 ])

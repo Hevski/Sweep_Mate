@@ -13,7 +13,6 @@
 			<button type="submit" name="button"><img src="../assets/bowler.jpg" class="bowler" alt="bowler-hat"></button>
 		</form>
 		<div class="">
-
 		</div>
 	</div>
 </template>

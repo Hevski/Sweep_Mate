@@ -5,6 +5,7 @@ import SingleSweepstake from './views/SingleSweepstake.vue'
 import AdminHome from './views/AdminHome.vue'
 import AdminNewSweepstake from './views/AdminNewSweepstake.vue'
 import AdminEditSweepstake from './views/AdminEditSweepstake.vue'
+import AdminNonRandNewSweep from './views/AdminNonRandNewSweep.vue'
 
 Vue.use(Router)
 
@@ -38,6 +39,12 @@ export default new Router({
       path: '/admin/sweepstakes/:id/edit',
       name: 'admin-sweepstakes-edit',
       component: AdminEditSweepstake,
+      props: true
+    },
+    {
+      path: '/admin/sweepstakes/newnonrand',
+      name: 'admin-non-rand-new',
+      component: AdminNonRandNewSweep,
       props: true
     }
 
