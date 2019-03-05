@@ -18,9 +18,11 @@
 			<input type="date" name="date" v-model="amendedSweep.cutOffDate" required>
 		</label>
 
-		<label> Sweepstake Options (not editable, sorry):
-			<textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea>
-		</label>
+		<fieldset>
+			<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
+			<!-- <textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea> -->
+			<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
+		</fieldset>
 
 		<label :class="{disabled: !sweepstakeClosed()}">Final Answer:
 			<input type="text" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed()">
@@ -33,6 +35,7 @@
 
 <script>
 import { eventBus } from '../main.js';
+import OptionList from './OptionList.vue'
 
 export default {
 	name: "edit-sweep-form",
@@ -49,12 +52,15 @@ export default {
 			notification: ''
 		}
 	},
+	components: {
+		OptionList
+	},
 	computed: {
-		sweepOptions: function(){
-			const optionsAsString = this.amendedSweep.options.map( option => option.name).join(', ')
-
-			return optionsAsString
-		}
+		// sweepOptions: function(){
+		// 	const optionsAsString = this.amendedSweep.options.map( option => option.name).join(', ')
+		//
+		// 	return optionsAsString
+		// }
 	},
 	methods: {
 		saveChanges(e){
@@ -105,6 +111,11 @@ export default {
 	button {
 		max-width:100px;
 		padding: 5px 10px;
+	}
+	fieldset {
+		display: flex;
+		flex-direction:column;
+		border: 0;
 	}
 	.disabled {
 		color: #848484;
