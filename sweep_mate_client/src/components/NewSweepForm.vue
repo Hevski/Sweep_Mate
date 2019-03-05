@@ -1,7 +1,7 @@
 <template lang="html">
   <form v-on:submit="createSweep">
     <br>
-    <p v-if="createSweep">{{this.message}}</p>
+    <p v-if="createSweep" class="msg">{{this.message}}</p>
     <br>
     <label>Title of Sweep:
 			<input type="text" name="sweepTitle" value="" v-model="newSweep.title" required>
@@ -60,6 +60,14 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.msg {
+		padding:10px;
+		background-color: #C4F7DC;
+		border: 1px solid #64D598;
+		border-radius: 5px;
+}
+
 form {
   display: flex;
   flex-direction: column;
