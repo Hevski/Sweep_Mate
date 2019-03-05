@@ -42,8 +42,11 @@ export default {
   #sweeps-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
   }
+
+	h1 {
+		font-family: 'Righteous', cursive;
+		font-size: 50px;
+		margin-bottom: 2px
+	}
 </style>

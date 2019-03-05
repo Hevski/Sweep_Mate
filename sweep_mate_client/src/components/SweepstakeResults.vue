@@ -1,23 +1,24 @@
 <template lang="html">
   <div class="">
-    <h2>Winner: {{winner.name}}</h2>
-    <h2>Result: {{winner.allocatedOption}}</h2>
+    <h2>Winner: {{winner}}</h2>
+    <h2>Result: {{ sweep.finalAnswer}}</h2>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['sweepsPlayers', 'sweep'],
+  props: ['sweep'],
   data(){
     return {
-      winner: ""
+      winner: ''
     }
   },
-  methods: {
-    findWinner(){
-      this.winner = this.sweepsPlayers.find(player => player.allocatedOption === this.sweep.finalAnswer)
-    }
-  }
+	mounted(){
+		if(this.sweep.finalAnswer !== ''){
+			const winningOption = this.sweep.options.find(option => option.name === this.sweep.finalAnswer)
+			this.winner = winningOption.allocatedTo
+		}
+	}
 }
 </script>
 
