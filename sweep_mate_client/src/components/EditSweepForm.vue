@@ -17,12 +17,11 @@
 
 			<fieldset>
 				<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
-				<!-- <textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea> -->
 				<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
 			</fieldset>
 
-			<label for="finalAnswer" :class="{disabled: !sweepstakeClosed()}">Final Answer:</label>
-			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed()">
+			<label for="finalAnswer" :class="{disabled: !sweepstakeClosed}">Final Answer:</label>
+			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed">
 
 			<button type="submit" name="button">Save Changes</button>
 		</form>
@@ -48,6 +47,15 @@ export default {
 			notification: ''
 		}
 	},
+	computed: {
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = this.amendedSweep.cutOffDate ? new Date(this.amendedSweep.cutOffDate) : null ;
+
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		}
+	},
 	components: {
 		OptionList
 	},
@@ -69,13 +77,6 @@ export default {
 			eventBus.$emit('sweepstake-updated', updatedSweep)
 			this.notification = "Sweepstake updated"
 		} )
-	},
-	sweepstakeClosed() {
-		const today = new Date();
-		const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
-
-		//returns true if sweepstake cut off date is past
-		return today >= cutOffDate;
 	}
 }
 }
