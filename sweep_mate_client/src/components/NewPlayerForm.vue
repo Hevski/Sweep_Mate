@@ -54,7 +54,7 @@ export default {
 					this.yourOption = player.games[player.games.length-1].allocatedOption
 
 					// pass it over to set the corresponding sweep's option as allocated
-					eventBus.$emit('option-allocated', this.newPlayer )
+					eventBus.$emit('option-allocated', player )
 
 					//form reset
 					this.newPlayer.name = this.newPlayer.email = ""
