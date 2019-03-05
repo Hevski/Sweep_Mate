@@ -59,7 +59,7 @@ const createRouter = function (collection) {
     const id = req.params.id;
     const newContent = req.body;
     delete newContent._id;
-    collection.findOneAndUpdate( {_id: ObjectID(id)}, { $set: newContent })
+    collection.findOneAndUpdate( {_id: ObjectID(id)}, { $set: newContent }, {returnOriginal: false})
     .then( (result) => res.json(result.value) )
     .catch( (err) => {
       console.error(err);
