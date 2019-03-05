@@ -4,11 +4,7 @@
     <p>{{message}}</p>
     <list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
     <new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
-<<<<<<< HEAD
-    <sweepstake-results :sweep="sweep" :sweepsPlayers="sweepsPlayers" v-else=""></sweepstake-results>
-=======
-    <sweepstake-results :sweepsPlayers="sweepsPlayers"></sweepstake-results>
->>>>>>> develop
+    <sweepstake-results :sweep="sweep" :sweepsPlayers="sweepsPlayers"></sweepstake-results>
   </div>
 </template>
 
@@ -61,10 +57,6 @@ export default {
     sweepstakeClosed() {
       const today = new Date();
       const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
       //returns true if sweepstake cut off date is past
       return today >= cutOffDate;
     },

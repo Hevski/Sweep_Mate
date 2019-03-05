@@ -112,6 +112,20 @@ export default {
 		transform: translateY(4px);
 	}
 
+	button {
+	padding: 15px 25px;
+	font-size: 24px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: #0820d4;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+	margin-bottom: 10px;
+}
+
 	.announcement {
 		margin-top: 30px;
 		padding: 30px;

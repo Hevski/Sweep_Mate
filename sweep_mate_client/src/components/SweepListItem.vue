@@ -11,11 +11,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-// import ListSweepstakes from './ListSweepstakes.vue'
-=======
-
->>>>>>> develop
 import {eventBus} from '../main.js'
 export default {
   name: "SweepsListItem",
