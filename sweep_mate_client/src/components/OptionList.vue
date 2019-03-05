@@ -2,7 +2,7 @@
 	<label>
 		<input type="input" :name="fieldName" v-model="option.name" :readonly="alreadyAllocated"/>
 		<input type="hidden" v-model="option.allocated" />
-		<span v-if="alreadyAllocated"> - allocated</span>
+		<span v-if="alreadyAllocated">&nbsp;- allocated</span>
 	</label>
 </template>
 
@@ -22,4 +22,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+	label {
+		display: flex;
+		width: 50%;
+		margin-left:auto;
+		margin-right: auto;
+	}
 </style>

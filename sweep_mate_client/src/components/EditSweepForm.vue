@@ -1,36 +1,32 @@
 <template lang="html">
 	<div id="sweep-edit-form">
 
-	<p v-if="notification" class="notification">{{ notification }}</p>
+		<p v-if="notification" class="notification">{{ notification }}</p>
 
-	<form v-if="sweep" v-on:submit="saveChanges">
-		<label>Title:
+		<form v-if="sweep" v-on:submit="saveChanges">
+			<label for="title">Title:		</label>
 			<input type="text" id="title" name="title" v-model="amendedSweep.title" required>
-		</label>
 
-		<label>Picture URL:
-			<input type="url" name="picture" v-model="amendedSweep.picture" required>
-		</label>
+			<label for="picture">Picture URL:		</label>
+			<input type="url" id="picture" name="picture" v-model="amendedSweep.picture" required>
 
-		<img id="sweep-picture" :src="amendedSweep.picture" alt="sweep.title" v-if="sweep.picture"/>
+			<img id="sweep-picture" :src="amendedSweep.picture" alt="sweep.title" v-if="sweep.picture"/>
 
-		<label>Cut-off Date:
-			<input type="date" name="date" v-model="amendedSweep.cutOffDate" required>
-		</label>
+			<label for="date">Cut-off Date:</label>
+			<input type="date" id="date" name="date" v-model="amendedSweep.cutOffDate" required>
 
-		<fieldset>
-			<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
-			<!-- <textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea> -->
-			<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
-		</fieldset>
+			<fieldset>
+				<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
+				<!-- <textarea name="options" rows="8" cols="80" v-model="sweepOptions" readonly></textarea> -->
+				<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
+			</fieldset>
 
-		<label :class="{disabled: !sweepstakeClosed()}">Final Answer:
-			<input type="text" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed()">
-		</label>
+			<label for="finalAnswer" :class="{disabled: !sweepstakeClosed()}">Final Answer:</label>
+			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!sweepstakeClosed()">
 
-		<button type="submit" name="button">Save Changes</button>
-	</form>
-</div>
+			<button type="submit" name="button">Save Changes</button>
+		</form>
+	</div>
 </template>
 
 <script>
@@ -105,7 +101,7 @@ export default {
 		align-items: center;
 		margin-top: 30px;
 	}
-	label {
+	input {
 		margin-bottom: 20px;
 	}
 	button {
@@ -114,7 +110,7 @@ export default {
 	}
 	fieldset {
 		display: flex;
-		flex-direction:column;
+		flex-direction: column;
 		border: 0;
 	}
 	.disabled {

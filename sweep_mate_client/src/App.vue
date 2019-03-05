@@ -15,6 +15,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+	width:80%;
+	margin-left:auto;
+	margin-right: auto;
 }
 #nav {
   padding: 30px;
