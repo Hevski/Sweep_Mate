@@ -42,8 +42,5 @@ export default {
   #sweeps-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
   }
 </style>

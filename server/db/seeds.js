@@ -5,7 +5,7 @@ db.sweepstakes.insertMany([
   {
     title: "6 Nations",
     picture: "https://d3gbf3ykm8gp5c.cloudfront.net/content/uploads/2018/01/31163335/1022.6666666666666x767__origin__0x0_Six_Nations_launch.jpg",
-    cutOffDate: "03-02-2019",
+    cutOffDate: "2019-04-04",
     options: [
       {name: "France", allocatedTo: ''},
       {name: "Scotland", allocatedTo: ''},
