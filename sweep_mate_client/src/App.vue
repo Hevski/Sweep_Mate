@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <img class="headerLogo" src="./assets/penguin_logo.jpeg" alt="Penguin Logo">
       <router-link to="/">Home</router-link>
       <router-link to="/admin">Admin Area</router-link>
     </div>
@@ -19,16 +20,25 @@
 	margin-left:auto;
 	margin-right: auto;
 }
+
+.headerLogo {
+  width: 40px;
+  height: 60px;
+  justify: left;
+}
 #nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding: 10px;
+  justify-content: flex-start;
+  font-size: 20px;
+
+
+  background-color: #FFA00B;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+
+#nav a:hover {
+background-color: #5888C1;
 }
 
 #nav a.router-link-exact-active {
@@ -68,7 +78,8 @@ transform: translateY(4px);
  color: white;
  text-decoration: none;
  font-size: 17px;
- margin-bottom: 10px;
+ font-weight: bold;
+ margin-bottom: 0px;
  overflow: auto;
  background-color: #FFA00B;
  margin-left: 20px;
