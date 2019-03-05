@@ -7,13 +7,13 @@
 			<label>Email:
 				<input type="email" name="playerEmail" value="" v-model="newPlayer.email" required>
 			</label>
-			<button type="submit" name="button">PLAY</button>
+			<div class="announcement" v-if="yourOption">
+				Your sweep is {{ this.yourOption }}
+			</div>
+			<button type="submit" name="button"><img src="../assets/bowler.jpg" class="bowler" alt="bowler-hat"></button>
 		</form>
-		<div class="announcement" v-if="yourOption">
-			Your sweep is {{ this.yourOption }}
-		</div>
 		<div class="">
-			<img src="../assets/bowler.jpg" class="bowler" alt="bowler-hat" width="500" height="333">
+
 		</div>
 	</div>
 </template>
@@ -90,41 +90,16 @@ export default {
 		font-family: 'Avenir', Helvetica, Arial, sans-serif;
 		font-size: 0.9em;
 	}
-	button {
-		max-width:100px;
-		padding: 5px 10px;
-		font-size: 0.9em;
-		background-color: #fff;
-		border-radius: 5px;
-		box-shadow: 3px 3px 3px #ddd;
-		transition: box-shadow 400ms ease;
-		cursor: pointer;
-	}
-	button:hover{
-		box-shadow: 0 0 0 #fff;
+
+	button, button:hover, button:active {
+		background-color: white;
+		box-shadow: 0 0 0 white;
 	}
 
-	button:hover {background-color: #ff0000;}
-
-	button:active {
-		background-color: #3e8e41;
-		box-shadow: 0 5px #666;
-		transform: translateY(4px);
+	img {
+		width: 400px;
+		height: auto;
 	}
-
-	button {
-	padding: 15px 25px;
-	font-size: 24px;
-	text-align: center;
-	cursor: pointer;
-	outline: none;
-	color: #fff;
-	background-color: #0820d4;
-	border: none;
-	border-radius: 15px;
-	box-shadow: 0 9px #999;
-	margin-bottom: 10px;
-}
 
 	.announcement {
 		margin-top: 30px;

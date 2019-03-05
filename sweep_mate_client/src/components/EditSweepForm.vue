@@ -101,19 +101,7 @@ export default {
 		font-size: 0.9em;
 		margin-bottom: 20px;
 	}
-	button {
-		max-width:170px;
-		padding: 5px 10px;
-		font-size: 0.9em;
-		background-color: #fff;
-		border-radius: 5px;
-		box-shadow: 3px 3px 3px #ddd;
-		transition: box-shadow 400ms ease;
-		cursor: pointer;
-	}
-	button:hover{
-		box-shadow: 0 0 0 #fff;
-	}
+
 	fieldset {
 		display: flex;
 		flex-direction: column;
@@ -125,5 +113,32 @@ export default {
 	#sweep-picture {
 		height: 200px;
 		margin-bottom: 20px;
+	}
+
+	button, .button {
+	padding: 5px 10px;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #fff;
+	background-color: #0820d4;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px 5px #999;
+	margin-left: 10px;
+	text-decoration: none;
+	transition: box-shadow 400ms ease, background-color 600ms ease;
+	}
+
+	button:hover, .button:hover {
+		background-color: #ff0000;
+		box-shadow: 0 0 0 #fff;
+	}
+
+	button:active, .button:active {
+	background-color: #3e8e41;
+	box-shadow: 0 5px 5px #666;
+	transform: translateY(4px);
 	}
 </style>
