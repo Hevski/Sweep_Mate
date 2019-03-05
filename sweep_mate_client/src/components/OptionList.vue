@@ -1,7 +1,7 @@
 <template lang="html">
 	<label>
 		<input type="input" :name="fieldName" v-model="option.name" :readonly="alreadyAllocated"/>
-		<input type="hidden" v-model="option.allocated" />
+		<input type="hidden" v-model="option.allocatedTo" />
 		<span v-if="alreadyAllocated">&nbsp;- allocated</span>
 	</label>
 </template>
@@ -12,7 +12,7 @@ export default {
 	props: ['option', 'index'],
 	computed: {
 		alreadyAllocated(){
-			return this.option.allocated !== false
+			return this.option.allocatedTo !== ''
 		},
 		fieldName(){
 			return 'option-' + this.index

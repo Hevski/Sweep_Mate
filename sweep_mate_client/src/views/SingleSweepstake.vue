@@ -1,5 +1,4 @@
 <template lang="html">
-<<<<<<< HEAD
 	<div v-if="sweep">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
 		<p>{{message}}</p>
@@ -7,15 +6,6 @@
 		<new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
 		<sweepstake-results :sweep="sweep"></sweepstake-results>
 	</div>
-=======
-  <div v-if="sweep">
-    <sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
-    <p>{{message}}</p>
-    <list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
-    <new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
-    <sweepstake-results :sweepsPlayers="sweepsPlayers"></sweepstake-results>
-  </div>
->>>>>>> develop
 </template>
 
 <script>
@@ -67,7 +57,6 @@ export default {
 			const today = new Date();
 			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
 
-<<<<<<< HEAD
 			//returns true if sweepstake cut off date is past
 			return today >= cutOffDate;
 		},
@@ -101,32 +90,6 @@ export default {
 			}
 		}
 	}
-=======
-      //save changes to database
-      fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
-        method: 'put',
-        body: JSON.stringify(this.sweep),
-        headers: { 'Content-Type': 'application/json'}
-      })
-    },
-    filterSweepPlayers(){
-      const finalResult = []
-      this.playersList.forEach((player) => {
-        const playerHasSweep = player.games.find(game => game.game_id === this.sweep._id)
-        if (playerHasSweep) {
-          finalResult.push(player)
-        }
-      })
-      return finalResult
-    },
-    reduceOptions(){
-      this.optionsLength -= 1
-      if (this.optionsLength < 1) {
-      this.message = "Sweep full"
-     }
-    }
-  }
->>>>>>> develop
 }
 </script>
 
