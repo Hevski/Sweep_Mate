@@ -20,7 +20,8 @@
 	margin-right: auto;
 }
 #nav {
-  padding: 30px;
+  padding: 10px;
+  text-align: left;
 }
 
 #nav a {

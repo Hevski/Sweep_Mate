@@ -89,7 +89,7 @@ export default {
 				this.message = "Sweep full"
 			}
 		}
-	}
+	}    
 }
 </script>
 
