@@ -17,21 +17,21 @@ import SweepSummaryHome from '../components/SweepSummaryHome.vue';
 
 // import NewPlayerForm from '../components/NewPlayerForm.vue';
 export default {
-  name: 'home',
-  components: {
-    SweepSummaryHome
+	name: 'home',
+	components: {
+		SweepSummaryHome
 		// NewPlayerForm
-  },
-  data() {
-    return {
-      sweeps: []
-    }
-  },
-  mounted(){
-    fetch("http://localhost:3000/api/sweepstakes/")
-    .then(res => res.json())
-    .then(data => this.sweeps = data)
-  },
+	},
+	data() {
+		return {
+			sweeps: []
+		}
+	},
+	mounted(){
+		fetch("http://localhost:3000/api/sweepstakes/")
+		.then(res => res.json())
+		.then(data => this.sweeps = data)
+	},
 	methods: {
 	}
 }
@@ -39,10 +39,10 @@ export default {
 
 <style lang="css" scoped>
 
-  #sweeps-container {
-    display: flex;
-    flex-direction: column;
-  }
+	#sweeps-container {
+		display: flex;
+		flex-direction: column;
+	}
 
 	h1 {
 		font-family: 'Righteous', cursive;
@@ -51,9 +51,9 @@ export default {
 	}
 
 	@media (min-width:768px) {
-	   #sweeps-container {
-	    flex-direction: row;
-	    flex-wrap: wrap;
-	  }
+		#sweeps-container {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
 	}
 </style>

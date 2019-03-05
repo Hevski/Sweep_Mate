@@ -1,14 +1,12 @@
 <template lang="html">
 	<div v-if="sweep">
 		<edit-sweep-form :sweep="sweep"></edit-sweep-form>
-		<sweepstake-results :sweep="sweep" v-if="sweepstakeClosed()"></sweepstake-results>
-		<!-- <list-sweepstakes></list-sweepstakes> -->
+		<sweepstake-results :sweep="sweep" v-if="sweep.finalAnswer != '' && (sweepstakeClosed || countAvailableOptions <= 0)"></sweepstake-results>
 		<!-- <list-players></list-players> -->
 	</div>
 </template>
 
 <script>
-// import SweepListItem from '../components/SweepListItem'
 import {eventBus} from '../main.js'
 import EditSweepForm from '../components/EditSweepForm.vue'
 import SweepstakeResults from '../components/SweepstakeResults.vue'
@@ -18,6 +16,18 @@ export default {
 	data(){
 		return {
 			sweep: ''
+		}
+	},
+	computed: {
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
+
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		},
+		countAvailableOptions(){
+			return this.sweep.options.filter(option => option.allocatedTo === '').length
 		}
 	},
 	components: {
@@ -33,15 +43,6 @@ export default {
 
 			eventBus.$on('sweepstake-updated', updatedSweep => this.sweep = updatedSweep )
 		})
-	},
-	methods: {
-		sweepstakeClosed() {
-			const today = new Date();
-			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
-
-			//returns true if sweepstake cut off date is past
-			return today >= cutOffDate;
-		}
 	}
 }
 </script>
