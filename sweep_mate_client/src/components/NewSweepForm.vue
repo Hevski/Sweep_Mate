@@ -1,6 +1,7 @@
 <template lang="html">
   <form v-on:submit="createSweep">
     <br>
+    <p v-if="createSweep">{{this.message}}</p>
     <br>
     <label>Title of Sweep:
 			<input type="text" name="sweepTitle" value="" v-model="newSweep.title" required>
@@ -12,7 +13,6 @@
       <input type="date" name="cutOffDate" value="" v-model="newSweep.cutOffDate" required>
     </label>
     <label>Options: (seperate by commas)
-      <!-- <input type="textarea" rows="4" cols="50" name="options" value="" v-model="newSweep.options" required> -->
       <textarea rows="8" cols="40" name="options" v-model="newSweep.options" require placeholder="Enter options seperated by comma"></textarea>
     </label>
 		<button v-on:click="optionsArray" type="submit" name="button">CREATE</button>
@@ -31,7 +31,8 @@ export default {
         cutOffDate: "",
         options: [],
         finalAnswer: ""
-      }
+      },
+      message: ""
     }
   },
   methods: {
@@ -42,6 +43,7 @@ export default {
         body: JSON.stringify(this.newSweep),
         headers: { 'Content-Type': 'application/json'}
       })
+      .then(this.message = "Sweepstake Created")
     },
 
     optionsArray() {
