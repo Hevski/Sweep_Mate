@@ -1,6 +1,7 @@
 <template lang="html">
 	<div v-if="sweep">
 		<edit-sweep-form :sweep="sweep"></edit-sweep-form>
+		<sweepstake-results :sweep="sweep" v-if="sweepstakeClosed()"></sweepstake-results>
 		<!-- <list-sweepstakes></list-sweepstakes> -->
 		<!-- <list-players></list-players> -->
 	</div>
@@ -10,6 +11,8 @@
 // import SweepListItem from '../components/SweepListItem'
 import {eventBus} from '../main.js'
 import EditSweepForm from '../components/EditSweepForm.vue'
+import SweepstakeResults from '../components/SweepstakeResults.vue'
+
 export default {
 	name: "admin-edit-sweepstake",
 	data(){
@@ -18,7 +21,8 @@ export default {
 		}
 	},
 	components: {
-		EditSweepForm
+		EditSweepForm,
+		SweepstakeResults
 	},
 	mounted(){
 		const id = this.$route.params.id
@@ -29,9 +33,19 @@ export default {
 
 			eventBus.$on('sweepstake-updated', updatedSweep => this.sweep = updatedSweep )
 		})
+	},
+	methods: {
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = this.sweep.cutOffDate ? new Date(this.sweep.cutOffDate) : null ;
+
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		}
 	}
 }
 </script>
 
 <style lang="css" scoped>
+
 </style>

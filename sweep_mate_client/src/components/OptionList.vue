@@ -24,7 +24,7 @@ export default {
 <style lang="css" scoped>
 	label {
 		display: flex;
-		width: 50%;
+		width: 70%;
 		margin-left:auto;
 		margin-right: auto;
 	}

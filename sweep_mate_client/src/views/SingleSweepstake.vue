@@ -2,7 +2,7 @@
 	<div v-if="sweep">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
 		<p>{{message}}</p>
-		<list-players :playersList="playersList" :sweepsPlayers="sweepsPlayers"></list-players>
+		<list-players :sweepsPlayers="sweepsPlayers"></list-players>
 		<new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
 		<sweepstake-results :sweep="sweep" v-if="sweepstakeClosed() || optionsLength <= 0"></sweepstake-results>
 	</div>
@@ -36,6 +36,7 @@ export default {
 
 			eventBus.$on('option-allocated', newPlayer => {
 				this.makeOptionUnavailable(newPlayer)
+        this.sweepsPlayers.push(newPlayer)
 				this.reduceOptions()
 			})
 		});
@@ -63,8 +64,8 @@ export default {
 		makeOptionUnavailable(newPlayer){
 			const optionName = newPlayer.games[newPlayer.games.length-1].allocatedOption
 
-			const optionToRemove = this.sweep.options.find( option => option.name === optionName);
-			optionToRemove.allocatedTo = newPlayer.name
+			this.sweep.options.find( option => option.name === optionName).allocatedTo = newPlayer.name
+			// optionToRemove.allocatedTo = newPlayer.name
 
 			//save changes to database
 			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {

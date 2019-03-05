@@ -36,7 +36,7 @@ export default {
 }
 
 button {
-  max-width: 50px;
+  box-shadow: 0 0 0;
 }
 
 h3 {
@@ -49,5 +49,12 @@ h3 {
 .play-sweep {
   margin: 10px;
   font-size: 15px;
+}
+
+@media (min-width:768px) {
+  .sweep-summary {
+    width: 46%;
+    margin: 2%;
+  }
 }
 </style>

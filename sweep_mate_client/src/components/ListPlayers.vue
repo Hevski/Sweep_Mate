@@ -1,11 +1,13 @@
 <template lang="html">
-    <single-player :playersList="playersList" :sweepsPlayers="sweepsPlayers"></single-player>
+  <div class="">
+    <single-player v-for="(player, index) in sweepsPlayers" :key="index" :player="player"></single-player>
+  </div>
 </template>
 
 <script>
 import SinglePlayer from './SinglePlayer.vue'
 export default {
-  props: ['playersList', 'sweepsPlayers'],
+  props: ['sweepsPlayers'],
   data(){
     return {
     }
