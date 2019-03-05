@@ -14,7 +14,7 @@ db.sweepstakes.insertMany([
       {name: "Wales", allocated: false},
       {name: "Italy", allocated: false}
     ],
-    finalAnswer: "Scotland"
+    finalAnswer: ""
   },
   {
     title: "Great British Bake Off",
