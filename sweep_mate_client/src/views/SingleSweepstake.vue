@@ -37,7 +37,6 @@ export default {
 			eventBus.$on('option-allocated', newPlayer => {
 				this.makeOptionUnavailable(newPlayer)
         this.sweepsPlayers.push(newPlayer)
-        console.log(newPlayer);
 				this.reduceOptions()
 			})
 		});
