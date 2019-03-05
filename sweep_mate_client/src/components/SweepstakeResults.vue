@@ -20,3 +20,4 @@ export default {
 
 <style lang="css" scoped>
 </style>
+<div v-if="show" transition="expand">hello</div>

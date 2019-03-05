@@ -2,7 +2,7 @@
 	<div class="home">
 		<section class="logo">
 			<h1>SweepMate</h1>
-			<img src="../assets/penguin_logo.jpeg" alt="penguin_logo">
+			<img src="../assets/penguin.png" alt="penguin_logo">
 		</section>
 		<h2>Current Games</h2>
 		<section id="sweeps-container" v-if="sweeps">

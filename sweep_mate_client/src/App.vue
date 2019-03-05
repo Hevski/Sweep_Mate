@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <img class="headerLogo" src="./assets/penguin_logo.jpeg" alt="Penguin Logo">
+      <img class="headerLogo" src="./assets/penguin.png" alt="Penguin Logo">
       <router-link to="/">Home</router-link>
       <router-link to="/admin">Admin Area</router-link>
     </div>
@@ -87,6 +87,10 @@ transform: translateY(4px);
 
 .active {
  background-color: #FFA00B;
+}
+
+body {
+  background-color: #FFFDFA;
 }
 
 @media screen and (max-width: 500px) {
