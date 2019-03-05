@@ -33,8 +33,6 @@ export default {
 			yourOption: ''
 		}
 	},
-	mounted(){
-	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
@@ -86,9 +84,23 @@ export default {
 	label {
 		margin-bottom: 20px;
 	}
+	input {
+		padding: 5px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		font-size: 0.9em;
+	}
 	button {
 		max-width:100px;
 		padding: 5px 10px;
+		font-size: 0.9em;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 3px 3px 3px #ddd;
+		transition: box-shadow 400ms ease;
+		cursor: pointer;
+	}
+	button:hover{
+		box-shadow: 0 0 0 #fff;
 	}
 	.announcement {
 		margin-top: 30px;
