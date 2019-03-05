@@ -1,5 +1,6 @@
 <template lang="html">
   <GChart
+    id="chart"
     v-if="chartData"
     type="ColumnChart"
     :data="chartData"
@@ -19,9 +20,10 @@ export default {
       chartData: [],
       chartOptions: {
         chart: {
-          title: 'Sweepstake Popularity',
+          title: 'Sweepstake Popularity'
         },
-        isStacked: true
+        isStacked: true,
+        legend: {position: 'top'}
       }
     }
   },
@@ -47,4 +49,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#chart {
+  margin-top: 30px;
+}
 </style>
