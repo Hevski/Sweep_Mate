@@ -51,13 +51,6 @@ export default {
 	components: {
 		OptionList
 	},
-	computed: {
-		// sweepOptions: function(){
-		// 	const optionsAsString = this.amendedSweep.options.map( option => option.name).join(', ')
-		//
-		// 	return optionsAsString
-		// }
-	},
 	methods: {
 		saveChanges(e){
 			e.preventDefault()
@@ -102,11 +95,23 @@ export default {
 		margin-top: 30px;
 	}
 	input {
+		padding: 5px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		font-size: 0.9em;
 		margin-bottom: 20px;
 	}
 	button {
-		max-width:100px;
+		max-width:170px;
 		padding: 5px 10px;
+		font-size: 0.9em;
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 3px 3px 3px #ddd;
+		transition: box-shadow 400ms ease;
+		cursor: pointer;
+	}
+	button:hover{
+		box-shadow: 0 0 0 #fff;
 	}
 	fieldset {
 		display: flex;

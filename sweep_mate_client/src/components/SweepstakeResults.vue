@@ -10,7 +10,7 @@ export default {
   props: ['sweep'],
   data(){
     return {
-      winner: ""
+      winner: ''
     }
   },
 	mounted(){

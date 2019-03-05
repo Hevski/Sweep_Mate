@@ -28,4 +28,10 @@ export default {
 		margin-left:auto;
 		margin-right: auto;
 	}
+	input {
+		padding: 5px;
+		font-family: 'Avenir', Helvetica, Arial, sans-serif;
+		font-size: 0.9em;
+		margin-bottom: 10px;
+	}
 </style>

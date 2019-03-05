@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="sweep-summary" :style="style">
     <h3>{{sweep.title}}</h3>
-    <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" tag="button">PLAY</router-link>
+    <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" tag="button" class="play-sweep">PLAY</router-link>
   </div>
 </template>
 
@@ -44,5 +44,10 @@ h3 {
   background-color: rgba(74,70,70,0.5);
   padding: 10px;
   border-radius: 10px;
+}
+
+.play-sweep {
+  margin: 10px;
+  font-size: 15px;
 }
 </style>

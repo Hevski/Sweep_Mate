@@ -43,4 +43,10 @@ export default {
     display: flex;
     flex-direction: column;
   }
+
+	h1 {
+		font-family: 'Righteous', cursive;
+		font-size: 50px;
+		margin-bottom: 2px
+	}
 </style>
