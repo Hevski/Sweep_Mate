@@ -33,20 +33,19 @@ export default {
 #sweep-list {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-content: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .sweep-item {
+  /* display: flex; */
   border-style: solid;
-  width: 100%;
+  width: 20%;
   height: auto;
-  display: flex;
   flex-direction: column;
   border-style: solid;
   padding: 12px;
-  margin: 3px;
-  width: 400px;
+  margin: 2%;
   height: auto;
   border-radius: 10px;
   flex-wrap: wrap;
@@ -54,6 +53,12 @@ export default {
   text-align: -webkit-center;
   font-weight: bold;
   font-size: 18px;
+  justify-content: center;
+}
+
+button, .button {
+  margin: 17px;
+  padding: 7px;
 }
 
 </style>

@@ -53,7 +53,8 @@ h3 {
 
 .play-sweep {
   margin: 10px;
-  font-size: 15px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 @media (min-width:768px) {
