@@ -75,5 +75,28 @@ db.sweepstakes.insertMany([
       {name: "Denmark", allocatedTo: ''}
     ],
     finalAnswer: ""
+  },
+  {
+    title: "Strictly Come Dancing",
+    picture: "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/09/08/21/strictly-come-dancing-2018-return.jpg",
+    cutOffDate: "2019-08-06",
+    options: [
+      {name: "Ashley Roberts", allocatedTo: ''},
+      {name: "Charles Venn", allocatedTo: ''},
+      {name: "Danny John-Jules", allocatedTo: ''},
+      {name: "Dr. Ranj Singh", allocatedTo: ''},
+      {name: "Faye Tozer", allocatedTo: ''},
+      {name: "Graeme Swann", allocatedTo: ''},
+      {name: "Joe Sugg", allocatedTo: ''},
+      {name: "Kate Silverton", allocatedTo: ''},
+      {name: "Katie Piper", allocatedTo: ''},
+      {name: "Lauren Steadman", allocatedTo: ''},
+      {name: "Lee Ryan", allocatedTo: ''},
+      {name: "Seann Walsh", allocatedTo: ''},
+      {name: "Stacey Dooley", allocatedTo: ''},
+      {name: "Susannah Constantine", allocatedTo: ''},
+      {name: "Vick Hope", allocatedTo: ''}
+    ],
+    finalAnswer: ""
   }
 ])
