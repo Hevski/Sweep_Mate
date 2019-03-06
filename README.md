@@ -16,7 +16,9 @@ Vue Router
 ## Screen Grabs
 ![Screen Home](./ScreenGrabs/Home.png)
 _screen home_
+
 ![Screen Admin](./ScreenGrabs/admin.png)
 _admin home_
+
 ![Screen Play Sweep](./ScreenGrabs/Play_sweep.png)
 _play sweep_
