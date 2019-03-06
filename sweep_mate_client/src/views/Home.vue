@@ -8,19 +8,15 @@
 		<section id="sweeps-container" v-if="sweeps">
 			<sweep-summary-home v-for="(sweep, index) in sweeps" :key="index" :sweep="sweep"></sweep-summary-home>
 		</section>
-		<!-- <new-player-form></new-player-form> -->
 	</div>
 </template>
 
 <script>
 import SweepSummaryHome from '../components/SweepSummaryHome.vue';
-
-// import NewPlayerForm from '../components/NewPlayerForm.vue';
 export default {
 	name: 'home',
 	components: {
 		SweepSummaryHome
-		// NewPlayerForm
 	},
 	data() {
 		return {

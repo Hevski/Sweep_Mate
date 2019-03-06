@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import ListPlayers from './ListPlayers.vue'
 export default {
 	name: "SinglePlayers",
 	props: ['player', 'sweep_id'],

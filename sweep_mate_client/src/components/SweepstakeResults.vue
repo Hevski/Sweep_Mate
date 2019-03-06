@@ -13,8 +13,7 @@ export default {
 			const winningOption = this.sweep.options.find(option => option.name === this.sweep.finalAnswer)
 			return winningOption.allocatedTo
 		}
-	},
-
+	}
 }
 </script>
 
@@ -26,6 +25,4 @@ export default {
 .pop-enter, .pop-leave-to {
   opacity: 0
 }
-
-
 </style>

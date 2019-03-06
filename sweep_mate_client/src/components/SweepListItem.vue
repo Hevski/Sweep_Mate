@@ -23,9 +23,6 @@ export default {
   }
 }
 
-
-
-
 </script>
 
 <style lang="css" scoped>
@@ -38,7 +35,6 @@ export default {
 }
 
 .sweep-item {
-  /* display: flex; */
   border-style: solid;
   width: 20%;
   height: auto;
