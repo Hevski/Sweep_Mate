@@ -70,7 +70,7 @@ h3 {
 }
 
 @media (min-width:768px) {
-  .sweep-summary {
+  .zoom {
     width: 46%;
     margin: 2%;
   }
