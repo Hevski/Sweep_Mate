@@ -67,10 +67,7 @@ const createRouter = function (collection) {
       res.json( {status: 500, error: err} );
     });
   })
-
   return router;
-
 };
-
 
 module.exports = createRouter;

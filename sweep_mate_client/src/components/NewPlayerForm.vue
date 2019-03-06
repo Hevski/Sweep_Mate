@@ -12,9 +12,6 @@
 			</div>
 			<button type="submit" name="button"><img src="../assets/bowlercopy.jpg" class="bowler" alt="bowler-hat"></button>
 		</form>
-		<div class="">
-
-		</div>
 	</div>
 </template>
 
@@ -59,16 +56,16 @@ export default {
 					body: JSON.stringify(this.newPlayer),
 					headers: { 'Content-Type': 'application/json'}
 				})
-					.then(res => res.json())
-					.then(player => {
-						//announce choice
-						this.yourOption = player.games[player.games.length-1].allocatedOption
+				.then(res => res.json())
+				.then(player => {
+					//announce choice
+					this.yourOption = player.games[player.games.length-1].allocatedOption
 
-						// pass it over to set the corresponding sweep's option as allocated
-						eventBus.$emit('option-allocated', player )
-
-						this.resetForm()
-					})
+					// pass it over to set the corresponding sweep's option as allocated
+					eventBus.$emit('option-allocated', player )
+					
+					this.resetForm()
+				})
 
 			} else {
 				// find existing player
@@ -82,39 +79,17 @@ export default {
 					body:JSON.stringify(existingPlayer),
 					headers: { 'Content-Type': 'application/json'}
 				})
-					.then(res => res.json())
-					.then(player => {
-						//announce choice
-						this.yourOption = player.games[player.games.length-1].allocatedOption
+				.then(res => res.json())
+				.then(player => {
+					//announce choice
+					this.yourOption = player.games[player.games.length-1].allocatedOption
 
-						// pass it over to set the corresponding sweep's option as allocated
-						eventBus.$emit('option-allocated', player )
+					// pass it over to set the corresponding sweep's option as allocated
+					eventBus.$emit('option-allocated', player )
 
-						this.resetForm()
-					})
-
+					this.resetForm()
+				})
 			}
-
-			//announce choice
-			// this.yourOption = pickedOption
-
-			// //create new player
-			// fetch("http://localhost:3000/api/players/", {
-			// 	method: 'post',
-			// 	body: JSON.stringify(this.newPlayer),
-			// 	headers: { 'Content-Type': 'application/json'}
-			// })
-			// // 	.then(res => res.json())
-			// 	.then(player => {
-			// 		//announce choice
-			// 		this.yourOption = player.games[player.games.length-1].allocatedOption
-			//
-			// 		// pass it over to set the corresponding sweep's option as allocated
-			// 		eventBus.$emit('option-allocated', player )
-			//
-			//form reset
-
-			// 	})
 		},
     pickOption() {
 			// find all available options

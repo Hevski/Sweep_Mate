@@ -49,17 +49,13 @@ export default {
       this.newSweep.options = []
     })
     },
-
     optionsArray() {
       let optionsArray = this.newSweep.options.split(",")
-      // this.newSweep.options
       const unfilteredArray = optionsArray.map(name => {
-        // if (name.trim() != '') {
           let newObj = {}
           newObj['name'] = name.trim()
           newObj['allocatedTo'] = '';
           return newObj
-        // }
       })
       this.newSweep.options = unfilteredArray.filter(option => option.name != '')
     }
@@ -99,9 +95,4 @@ input {
   display: inline-block;
   float: right;
 }
-
-
-
-
-
 </style>

@@ -8,15 +8,9 @@
 </template>
 
 <script>
-// import SingleSweepstake from '../views/SingleSweepstake.vue';
 export default {
   name: "SweepSummaryHome",
   props: ['sweep'],
-  components: {
-    // SingleSweepstake
-  },
-  methods: {
-  },
   computed: {
     style () {
       return 'background-image: url(' + this.sweep.picture + ');'
@@ -58,8 +52,8 @@ h3 {
 }
 
 .zoom:hover {
-  -ms-transform: scale(1.05); /* IE 9 */
-  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05); 
   transform: scale(1.05);
 }
 

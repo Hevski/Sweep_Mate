@@ -3,7 +3,6 @@
 		<h1>{{ sweep.title }}</h1>
 		<p v-if="!sweepstakeClosed()">Available until: {{ cutOffDate }}</p>
 		<p class="notification" v-else>This sweepstake is no longer available.</p>
-		<!-- <img :src="sweep.picture" alt="sweep.title" /> -->
 	</div>
 </template>
 
