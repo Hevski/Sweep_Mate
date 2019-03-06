@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="">
+		<h2>Current Players</h2>
     <single-player v-for="(player, index) in sweepsPlayers" :key="index" :player="player" :sweep_id="sweep_id"></single-player>
   </div>
 </template>

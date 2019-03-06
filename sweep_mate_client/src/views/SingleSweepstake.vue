@@ -40,6 +40,7 @@ export default {
 				this.reduceOptions()
 			})
 		});
+
 		fetch("http://localhost:3000/api/players/")
 		.then(res => res.json())
 		.then(players => {
@@ -64,8 +65,8 @@ export default {
 		makeOptionUnavailable(newPlayer){
 			const optionName = newPlayer.games[newPlayer.games.length-1].allocatedOption
 
-			this.sweep.options.find( option => option.name === optionName).allocatedTo = newPlayer.name
-			// optionToRemove.allocatedTo = newPlayer.name
+			const foundOption = this.sweep.options.find( option => option.name === optionName)
+			if(foundOption){ foundOption.allocatedTo = newPlayer.name }
 
 			//save changes to database
 			fetch("http://localhost:3000/api/sweepstakes/" + this.sweep._id, {
@@ -82,7 +83,7 @@ export default {
 					finalResult.push(player)
 				}
 			})
-			return finalResult
+			return [... new Set(finalResult)]
 		},
 		reduceOptions(){
 			this.optionsLength -= 1
