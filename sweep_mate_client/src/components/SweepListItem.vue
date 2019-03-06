@@ -1,11 +1,9 @@
 <template lang="html">
-  <div class="sweep-list">
-    <div v-for="(sweep, index) in sweepsList" :key="index">
-      <div class="item">
+  <div id="sweep-list">
+    <div v-for="(sweep, index) in sweepsList" :key="index" class="sweep-item">
         <h3>{{sweep.title}}</h3>
         <router-link :to="{name: 'admin-sweepstakes-edit', params: {id: sweep._id}}" class="button">Edit</router-link>
         <button type="button" name="delete-sweep" v-on:click="deleteSweep(sweep._id)">Delete</button>
-      </div>
     </div>
   </div>
 </template>
@@ -32,21 +30,30 @@ export default {
 
 <style lang="css" scoped>
 
-/* .sweep-list-item {
+#sweep-list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-start;
-  flex-wrap: wrap;
 }
 
-.item {
-  display: flex;
+.sweep-item {
   border-style: solid;
-  width: 100px;
+  width: 100%;
   height: auto;
-  align-items: flex-start;
-  align-content:flex-start;
-} */
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  padding: 12px;
+  margin: 3px;
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+  text-align: -webkit-center;
+  font-weight: bold;
+  font-size: 18px;
+}
 
 </style>

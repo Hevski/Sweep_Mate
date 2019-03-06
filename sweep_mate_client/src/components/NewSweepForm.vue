@@ -1,7 +1,7 @@
 <template lang="html">
   <form v-on:submit="createSweep">
     <br>
-    <p v-if="createSweep" class="msg">{{this.message}}</p>
+    <p v-if="message" class="msg">{{this.message}}</p>
     <br>
     <label>Title of Sweep:
 			<input type="text" name="sweepTitle" value="" v-model="newSweep.title" required>
@@ -29,8 +29,7 @@ export default {
         title: "",
         picture: "",
         cutOffDate: "",
-        options: [],
-        finalAnswer: ""
+        options: []
       },
       message: ""
     }
@@ -43,7 +42,12 @@ export default {
         body: JSON.stringify(this.newSweep),
         headers: { 'Content-Type': 'application/json'}
       })
-      .then(this.message = "Sweepstake Created")
+      .then( () => {this.message = "Sweepstake Created"
+      this.newSweep.title = ''
+      this.newSweep.picture = ''
+      this.newSweep.cutOffDate = ''
+      this.newSweep.options = []
+    })
     },
 
     optionsArray() {
