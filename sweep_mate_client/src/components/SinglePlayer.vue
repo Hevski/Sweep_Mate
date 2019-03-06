@@ -1,32 +1,33 @@
 <template lang="html">
-    <div class="single-player">
-      <p>Player Name: {{player.name}}</p>
-      <div class="option" v-for="(game, index) in player.games" :key="index" >
-        <p v-if="game.game_id === sweep_id">Allocated: {{game.allocatedOption}}</p>
-      </div>
-    </div>
+	<div class="single-player">
+		<p><strong>Player Name:</strong> {{player.name}}</p>
+		<p><strong>Allocated:</strong> {{ getGameOptions }}</p>
+	</div>
 </template>
 
 <script>
 // import ListPlayers from './ListPlayers.vue'
 export default {
-  name: "SinglePlayers",
-  props: ['player', 'sweep_id']
+	name: "SinglePlayers",
+	props: ['player', 'sweep_id'],
+	computed: {
+		getGameOptions(){
+			const gameEntries = this.player.games.filter( game => game.game_id === this.sweep_id )
+			return gameEntries.map(game => game.allocatedOption).join(', ')
+		}
+	}
 }
 </script>
 
 <style lang="css" scoped>
 
-.single-player {
-  display: flex;
-  justify-content: center;
-  margin: 2px;
-}
-.player-list {
-  border-style: solid;
-}
+	.single-player {
+		display: flex;
+		justify-content: center;
+	}
 
-.option {
-  padding-left: 40px;
-}
+	.single-player > p:last-child {
+		margin-left: 10px;
+	}
+
 </style>
