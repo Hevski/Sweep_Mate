@@ -2,7 +2,7 @@
     <div class="single-player">
       <p>Player Name: {{player.name}}</p>
       <div class="option" v-for="(game, index) in player.games" :key="index" >
-        <p>Allocated: {{game.allocatedOption}}</p>
+        <p v-if="game.game_id === sweep_id">Allocated: {{game.allocatedOption}}</p>
       </div>
     </div>
 </template>
@@ -11,7 +11,7 @@
 // import ListPlayers from './ListPlayers.vue'
 export default {
   name: "SinglePlayers",
-  props: ['player']
+  props: ['player', 'sweep_id']
 }
 </script>
 

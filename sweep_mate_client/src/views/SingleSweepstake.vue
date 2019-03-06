@@ -2,7 +2,7 @@
 	<div v-if="sweep">
 		<sweepstake-details :sweep="sweep" :sweepstakeClosed="sweepstakeClosed"/>
 		<p>{{message}}</p>
-		<list-players :sweepsPlayers="sweepsPlayers"></list-players>
+		<list-players :sweepsPlayers="sweepsPlayers" :sweep_id="sweep._id"></list-players>
 		<new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
 		<sweepstake-results :sweep="sweep" v-if="sweepstakeClosed() || optionsLength <= 0"></sweepstake-results>
 	</div>
@@ -90,7 +90,7 @@ export default {
 				this.message = "Sweep full"
 			}
 		}
-	}    
+	}
 }
 </script>
 

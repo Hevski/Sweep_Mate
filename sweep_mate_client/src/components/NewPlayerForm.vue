@@ -31,35 +31,90 @@ export default {
 				email: "",
 				games: []
 			},
+			playersList: [],
 			yourOption: ''
 		}
+	},
+	mounted(){
+		fetch("http://localhost:3000/api/players/")
+		.then(res => res.json())
+		.then(data => this.playersList = data)
 	},
   methods: {
 		createPlayer(e){
 			e.preventDefault();
 
-			// allocate option randomly
+			// pick option randomly
 			const pickedOption = this.pickOption();
-			this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption });
 
-			//create new player
-			fetch("http://localhost:3000/api/players/", {
-				method: 'post',
-				body: JSON.stringify(this.newPlayer),
-				headers: { 'Content-Type': 'application/json'}
-			})
-				.then(res => res.json())
-				.then(player => {
-					//announce choice
-					this.yourOption = player.games[player.games.length-1].allocatedOption
+			// if(email already exists)
+			if(!this.emailExists(this.newPlayer.email)){
 
-					// pass it over to set the corresponding sweep's option as allocated
-					eventBus.$emit('option-allocated', player )
+				// allocate random option
+				this.newPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption });
 
-					//form reset
-					this.newPlayer.name = this.newPlayer.email = ""
-					this.newPlayer.games = []
+				//create new player
+				fetch("http://localhost:3000/api/players/", {
+					method: 'post',
+					body: JSON.stringify(this.newPlayer),
+					headers: { 'Content-Type': 'application/json'}
 				})
+					.then(res => res.json())
+					.then(player => {
+						//announce choice
+						this.yourOption = player.games[player.games.length-1].allocatedOption
+
+						// pass it over to set the corresponding sweep's option as allocated
+						eventBus.$emit('option-allocated', player )
+
+						this.resetForm()
+					})
+
+			} else {
+				// find existing player
+				const existingPlayer = this.findPlayerbyEmail(this.newPlayer.email)
+
+				// allocate random option
+				existingPlayer.games.push({ game_id: this.sweep._id, allocatedOption: pickedOption });
+
+				fetch("http://localhost:3000/api/players/" + existingPlayer._id, {
+					method: 'put',
+					body:JSON.stringify(existingPlayer),
+					headers: { 'Content-Type': 'application/json'}
+				})
+					.then(res => res.json())
+					.then(player => {
+						//announce choice
+						this.yourOption = player.games[player.games.length-1].allocatedOption
+
+						// pass it over to set the corresponding sweep's option as allocated
+						eventBus.$emit('option-allocated', player )
+
+						this.resetForm()
+					})
+
+			}
+
+			//announce choice
+			// this.yourOption = pickedOption
+
+			// //create new player
+			// fetch("http://localhost:3000/api/players/", {
+			// 	method: 'post',
+			// 	body: JSON.stringify(this.newPlayer),
+			// 	headers: { 'Content-Type': 'application/json'}
+			// })
+			// // 	.then(res => res.json())
+			// 	.then(player => {
+			// 		//announce choice
+			// 		this.yourOption = player.games[player.games.length-1].allocatedOption
+			//
+			// 		// pass it over to set the corresponding sweep's option as allocated
+			// 		eventBus.$emit('option-allocated', player )
+			//
+			//form reset
+
+			// 	})
 		},
     pickOption() {
 			// find all available options
@@ -70,7 +125,18 @@ export default {
 			const allocatedOption = availableOptions[selectedIndex];
 
 			return allocatedOption.name;
-    }
+    },
+		emailExists(email){
+			const emailsArray = this.playersList.map(player => player.email)
+			return emailsArray.includes(email)
+		},
+		findPlayerbyEmail(email){
+			return this.playersList.find(player => player.email === email)
+		},
+		resetForm(){
+			this.newPlayer.name = this.newPlayer.email = ""
+			this.newPlayer.games = []
+		}
   }
 }
 </script>
@@ -91,7 +157,7 @@ export default {
 		font-size: 0.9em;
 	}
 
-	button, button:hover, button:active {
+	button:not([type="reset"]), button:not([type="reset"]):hover, button:not([type="reset"]):active {
 		background-color: white;
 		box-shadow: 0 0 0 white;
 	}
