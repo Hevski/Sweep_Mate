@@ -2,7 +2,6 @@
   <div>
     <h2>Winner: {{ getWinner }}</h2>
     <h2>Result: {{ sweep.finalAnswer}}</h2>
-  </span>
   </div>
 </template>
 
