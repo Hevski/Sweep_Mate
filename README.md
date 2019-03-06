@@ -13,4 +13,10 @@ Vue Router
 
 [Project Brief](https://docs.google.com/document/d/1vCGD2b0vEZHtS5IpPZ15Q1bC1y0Bib5UXRWCcfOLUq4/edit#heading=h.a5obb37bjms1)
 
-![Screen grab 1](./)
+## Screen Grabs
+![Screen Home](./ScreenGrabs/Home.png)
+_screen home_
+![Screen Admin](./ScreenGrabs/admin.png)
+_admin home_
+![Screen Play Sweep](./ScreenGrabs/Play_sweep.png)
+_play sweep_

@@ -22,7 +22,7 @@
 
 			<label for="finalAnswer" :class="{disabled: disabled}">Final Answer:</label>
 			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="disabled">
-			
+
 	    <sweepstake-results :sweep="sweep" v-if="sweep.finalAnswer != '' && (sweepstakeClosed || countAvailableOptions <= 0)"></sweepstake-results>
 
 			<button type="submit" name="button">Save Changes</button>
@@ -121,5 +121,6 @@ export default {
 	#sweep-picture {
 		height: 200px;
 		margin-bottom: 20px;
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 </style>
