@@ -33,6 +33,11 @@ export default {
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.container {
+  padding: 10px;
 }
 
 button {
@@ -48,7 +53,8 @@ h3 {
 
 .play-sweep {
   margin: 10px;
-  font-size: 15px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 @media (min-width:768px) {

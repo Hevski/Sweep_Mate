@@ -10,7 +10,7 @@
 			<div class="announcement" v-if="yourOption">
 				Your sweep is {{ this.yourOption }}
 			</div>
-			<button type="submit" name="button"><img src="../assets/bowler.jpg" class="bowler" alt="bowler-hat"></button>
+			<button type="submit" name="button"><img src="../assets/bowlercopy.jpg" class="bowler" alt="bowler-hat"></button>
 		</form>
 		<div class="">
 

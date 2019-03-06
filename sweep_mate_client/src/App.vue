@@ -31,8 +31,6 @@
   flex-direction: row;
   justify-content: flex-start;
   font-size: 20px;
-
-
   background-color: #FFA00B;
 }
 
@@ -52,7 +50,7 @@ text-align: center;
 cursor: pointer;
 outline: none;
 color: #fff;
-background-color: #0820d4;
+background-color: #4D40B8;
 border: none;
 border-radius: 15px;
 box-shadow: 0 9px 5px #999;
@@ -62,12 +60,12 @@ transition: box-shadow 400ms ease, background-color 600ms ease;
 }
 
 button:hover, .button:hover {
-  background-color: #ff0000;
+  background-color: #FFA00B;
   box-shadow: 0 0 0 #fff;
 }
 
 button:active, .button:active {
-background-color: #3e8e41;
+background-color: #6D62C8;
 box-shadow: 0 5px 5px #666;
 transform: translateY(4px);
 }

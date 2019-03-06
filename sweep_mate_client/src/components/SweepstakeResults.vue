@@ -2,6 +2,7 @@
   <div>
     <h2>Winner: {{ getWinner }}</h2>
     <h2>Result: {{ sweep.finalAnswer}}</h2>
+  </span>
   </div>
 </template>
 
@@ -19,5 +20,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.pop-enter-active, .pop-leave-active {
+  transition: opacity 2.5s ease-out;
+}
+
+.pop-enter, .pop-leave-to {
+  opacity: 0
+}
+
+
 </style>
-<div v-if="show" transition="expand">hello</div>

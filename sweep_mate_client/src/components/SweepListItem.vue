@@ -1,11 +1,10 @@
 <template lang="html">
-  <div class="sweep-list-item">
-    <div v-for="(sweep, index) in sweepsList" :key="index">
-      <h3>{{sweep.title}}</h3>
-      <router-link :to="{name: 'admin-sweepstakes-edit', params: {id: sweep._id}}" class="button">Edit</router-link>
-      <button type="button" name="delete-sweep" v-on:click="deleteSweep(sweep._id)">Delete</button>
+  <div id="sweep-list">
+    <div v-for="(sweep, index) in sweepsList" :key="index" class="sweep-item">
+        <h3>{{sweep.title}}</h3>
+        <router-link :to="{name: 'admin-sweepstakes-edit', params: {id: sweep._id}}" class="button">Edit</router-link>
+        <button type="button" name="delete-sweep" v-on:click="deleteSweep(sweep._id)">Delete</button>
     </div>
-
   </div>
 </template>
 
@@ -30,5 +29,36 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#sweep-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.sweep-item {
+  /* display: flex; */
+  border-style: solid;
+  width: 20%;
+  height: auto;
+  flex-direction: column;
+  border-style: solid;
+  padding: 12px;
+  margin: 2%;
+  height: auto;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+  text-align: -webkit-center;
+  font-weight: bold;
+  font-size: 18px;
+  justify-content: center;
+}
+
+button, .button {
+  margin: 17px;
+  padding: 7px;
+}
 
 </style>
