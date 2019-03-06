@@ -1,16 +1,12 @@
 <template lang="html">
 	<div v-if="sweep">
 		<edit-sweep-form :sweep="sweep"></edit-sweep-form>
-		<sweepstake-results :sweep="sweep" v-if="sweep.finalAnswer != '' && (sweepstakeClosed || countAvailableOptions <= 0)"></sweepstake-results>
-		<!-- <list-players></list-players> -->
 	</div>
 </template>
 
 <script>
 import {eventBus} from '../main.js'
 import EditSweepForm from '../components/EditSweepForm.vue'
-import SweepstakeResults from '../components/SweepstakeResults.vue'
-
 export default {
 	name: "admin-edit-sweepstake",
 	data(){
@@ -31,8 +27,7 @@ export default {
 		}
 	},
 	components: {
-		EditSweepForm,
-		SweepstakeResults
+		EditSweepForm
 	},
 	mounted(){
 		const id = this.$route.params.id

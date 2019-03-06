@@ -51,13 +51,17 @@ export default {
     },
 
     optionsArray() {
-      let optionsArray = this.newSweep.options.split(", ")
-      this.newSweep.options = optionsArray.map(name => {
-        let newObj = {}
-        newObj['name'] = name;
-        newObj['allocatedTo'] = '';
-        return newObj
+      let optionsArray = this.newSweep.options.split(",")
+      // this.newSweep.options
+      const unfilteredArray = optionsArray.map(name => {
+        // if (name.trim() != '') {
+          let newObj = {}
+          newObj['name'] = name.trim()
+          newObj['allocatedTo'] = '';
+          return newObj
+        // }
       })
+      this.newSweep.options = unfilteredArray.filter(option => option.name != '')
     }
   }
 }

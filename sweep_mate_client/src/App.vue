@@ -35,12 +35,12 @@
 }
 
 
-#nav a:hover {
+#nav a:hover, #nav a:active {
 background-color: #5888C1;
 }
 
 #nav a.router-link-exact-active {
-  color: #155CAF;
+  background-color: #5888C1;
 }
 
 button, .button {
@@ -89,6 +89,7 @@ transform: translateY(4px);
 
 body {
   background-color: #FFFDFA;
+  margin: 0;
 }
 
 @media screen and (max-width: 500px) {

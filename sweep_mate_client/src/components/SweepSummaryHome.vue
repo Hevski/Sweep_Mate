@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="sweep-summary" :style="style">
-    <h3>{{sweep.title}}</h3>
-    <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" tag="button" class="play-sweep">PLAY</router-link>
+  <div class="zoom">
+    <div class="sweep-summary" :style="style">
+      <h3>{{sweep.title}}</h3>
+      <router-link :to="{name: 'singleSweepstake', params: {id: this.sweep._id}}" tag="button" class="play-sweep">PLAY</router-link>
+    </div>
   </div>
 </template>
 
@@ -51,6 +53,16 @@ h3 {
   border-radius: 10px;
 }
 
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.05); /* Safari 3-8 */
+  transform: scale(1.05);
+}
+
 .play-sweep {
   margin: 10px;
   font-size: 18px;
@@ -58,7 +70,7 @@ h3 {
 }
 
 @media (min-width:768px) {
-  .sweep-summary {
+  .zoom {
     width: 46%;
     margin: 2%;
   }
