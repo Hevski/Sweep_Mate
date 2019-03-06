@@ -4,7 +4,7 @@
 		<p>{{message}}</p>
 		<list-players :sweepsPlayers="sweepsPlayers" :sweep_id="sweep._id"></list-players>
 		<new-player-form v-if="!sweepstakeClosed() && optionsLength > 0" :sweep="sweep"></new-player-form>
-		<sweepstake-results :sweep="sweep" v-if="sweepstakeClosed() || optionsLength <= 0"></sweepstake-results>
+		<sweepstake-results :sweep="sweep" v-if="(sweepstakeClosed() || optionsLength <= 0) && sweep.finalAnswer != ''"></sweepstake-results>
 	</div>
 </template>
 
