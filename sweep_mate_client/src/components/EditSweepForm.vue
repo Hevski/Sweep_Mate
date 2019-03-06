@@ -4,26 +4,30 @@
 		<p v-if="notification" class="notification">{{ notification }}</p>
 
 		<form v-if="sweep" v-on:submit="saveChanges">
-			<label for="title">Title:		</label>
-			<input type="text" id="title" name="title" v-model="amendedSweep.title" required>
+			<label for="title">Title:
+			<input type="text" id="title" name="title" size="45" v-model="amendedSweep.title" required>
+			</label>
 
-			<label for="picture">Picture URL:		</label>
-			<input type="url" id="picture" name="picture" v-model="amendedSweep.picture" required>
+			<label for="picture">Picture URL:
+			<input type="url" id="picture" name="picture" size="45" v-model="amendedSweep.picture" required>
+			</label>
 
 			<img id="sweep-picture" :src="amendedSweep.picture" alt="sweep.title" v-if="sweep.picture"/>
 
-			<label for="date">Cut-off Date:</label>
+			<label for="date">Cut-off Date:
 			<input type="date" id="date" name="date" v-model="amendedSweep.cutOffDate" required>
+			</label>
 
 			<fieldset>
 				<legend>Sweepstake Options (already allocated options cannot be edited):</legend>
 				<option-list v-for="(option, index) in amendedSweep.options" :key="index" :option="option" :index="index"/>
 			</fieldset>
 
-			<label for="finalAnswer" :class="{disabled: disabled}">Final Answer:</label>
-			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="disabled">
+			<label for="finalAnswer" :class="{disabled: !this.sweepstakeClosed()}">Final Answer:
+			<input type="text" id="finalAnswer" name="finalAnswer" v-model="amendedSweep.finalAnswer" :disabled="!this.sweepstakeClosed()">
+			</label>
 
-	    <sweepstake-results :sweep="sweep" v-if="sweep.finalAnswer != '' && (sweepstakeClosed || countAvailableOptions <= 0)"></sweepstake-results>
+			<sweepstake-results :sweep="sweep" v-if="sweep.finalAnswer != '' && sweepstakeClosed"></sweepstake-results>
 
 			<button type="submit" name="button">Save Changes</button>
 		</form>
@@ -70,23 +74,23 @@ export default {
 				body: JSON.stringify(this.amendedSweep),
 				headers: { 'Content-Type': 'application/json'}
 			})
-		.then( res => res.json())
-		.then( updatedSweep => {
-			eventBus.$emit('sweepstake-updated', updatedSweep)
-			this.notification = "Sweepstake updated"
-		} )
-	},
-	sweepstakeClosed() {
-		const today = new Date();
-		const cutOffDate = this.amendedSweep.cutOffDate ? new Date(this.amendedSweep.cutOffDate) : null ;
+			.then( res => res.json())
+			.then( updatedSweep => {
+				eventBus.$emit('sweepstake-updated', updatedSweep)
+				this.notification = "Sweepstake updated"
+			} )
+		},
+		sweepstakeClosed() {
+			const today = new Date();
+			const cutOffDate = this.amendedSweep.cutOffDate ? new Date(this.amendedSweep.cutOffDate) : null ;
 
-		//returns true if sweepstake cut off date is past
-		return today >= cutOffDate;
-	},
-	countAvailableOptions(){
-		return this.sweep.options.filter(option => option.allocatedTo === '').length
+			//returns true if sweepstake cut off date is past
+			return today >= cutOffDate;
+		},
+		countAvailableOptions(){
+			return this.sweep.options.filter(option => option.allocatedTo === '').length
+		}
 	}
-}
 }
 </script>
 

@@ -81,9 +81,7 @@ form {
   flex-direction: column;
   align-items: center;
 }
-label {
-  margin-bottom: 20px;
-}
+
 button {
   max-width:100px;
   padding: 5px 10px;
@@ -94,12 +92,12 @@ label{
     float: left;
     clear: left;
     width: 250px;
+		margin-bottom: 20px;
     text-align: left; /*Change to right here if you want it close to the inputs*/
 }
 input {
   display: inline-block;
   float: right;
-
 }
 
 
