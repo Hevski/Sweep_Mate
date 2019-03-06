@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div v-if="sweep.finalAnswer">
     <h2>Winner: {{ getWinner }}</h2>
     <h2>Result: {{ sweep.finalAnswer}}</h2>
   </div>
