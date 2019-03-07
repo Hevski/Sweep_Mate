@@ -36,7 +36,7 @@ export default {
 
 .sweep-item {
   border-style: solid;
-  width: 20%;
+  width: 96%;
   height: auto;
   flex-direction: column;
   border-style: solid;
@@ -55,6 +55,12 @@ export default {
 button, .button {
   margin: 17px;
   padding: 7px;
+}
+
+@media (min-width:768px) {
+  .sweep-item {
+    width: 40%;
+  }
 }
 
 </style>
